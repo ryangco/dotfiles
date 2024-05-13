@@ -32,6 +32,14 @@ vim.keymap.set('v', '<leader>y', '"+y')
 vim.keymap.set('n', '<leader>Y', '"+Y')
 vim.keymap.set('v', '<S-up>', ":m '<-2<CR>gv=gv")
 vim.keymap.set('v', '<S-down>', ":m '>+1<CR>gv=gv")
+vim.keymap.set('n', '<C-d>', '<C-d>zt')
+vim.keymap.set('n', '<C-u>', '<C-u>zt')
+vim.keymap.set('n', 'n', 'nzt')
+vim.keymap.set('n', 'N', 'Nzt')
+
+-- Mini Indent
+vim.g.miniindentscope_disable = true
+vim.keymap.set('n', '<leader>is', '<cmd>lua vim.g.miniindentscope_disable = not vim.g.miniindentscope_disable<CR>', { desc = 'Indent Scope' })
 
 -- Obsidian
 vim.opt.conceallevel = 1
