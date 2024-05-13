@@ -3,18 +3,18 @@ return {
   version = '*',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+    'nvim-tree/nvim-web-devicons',
     'MunifTanjim/nui.nvim',
   },
   cmd = 'Neotree',
   keys = {
-    { '\\', '<cmd>Neotree reveal<CR>', { desc = 'NeoTree reveal' } },
+    { '=', '<cmd>Neotree reveal<CR>', { desc = 'NeoTree reveal' } },
   },
   opts = {
     filesystem = {
       window = {
         mappings = {
-          ['\\'] = 'close_window',
+          ['='] = 'close_window',
           ['<esc><esc><esc>'] = 'close_window',
         },
         position = 'right',

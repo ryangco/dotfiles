@@ -3,16 +3,22 @@ return {
     'rebelot/kanagawa.nvim',
     lazy = false,
     priority = 1000,
-    opts = {
-      colors = {
-        palette = {
-          sumiInk3 = '#000000',
-          sumiInk4 = '#000000',
-          dragonBlack3 = '#000000',
-          dragonBlack4 = '#000000',
+    opts = {},
+    config = function()
+      require('kanagawa').setup {
+        commentStyle = { italic = false },
+        statementStyle = { bold = false },
+        colors = {
+          palette = {
+            sumiInk3 = '#000000',
+            sumiInk4 = '#000000',
+            dragonBlack3 = '#000000',
+            dragonBlack4 = '#000000',
+          },
         },
-      },
-    },
+      }
+      vim.cmd 'colorscheme kanagawa'
+    end,
   },
   {
     'folke/tokyonight.nvim',
@@ -24,7 +30,7 @@ return {
         colors.bg_dark = '#000000'
       end,
       styles = {
-        -- comments = { italic = false },
+        comments = { italic = false },
         keywords = { italic = false },
         -- functions = { italic = false },
         variables = { italic = false },
