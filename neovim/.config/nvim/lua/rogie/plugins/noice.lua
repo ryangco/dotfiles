@@ -1,4 +1,4 @@
-return {
+return {--[[ 
   'folke/noice.nvim',
   event = 'VeryLazy',
   opts = {
@@ -47,5 +47,5 @@ return {
   dependencies = {
     'MunifTanjim/nui.nvim',
     'rcarriga/nvim-notify',
-  },
+  }, ]]
 }
