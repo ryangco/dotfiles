@@ -5,7 +5,6 @@ return {
 		opts = {},
 	},
 	{ "tpope/vim-sleuth" },
-	{ "numToStr/Comment.nvim", opts = {} },
 	{
 		"folke/todo-comments.nvim",
 		event = "VimEnter",

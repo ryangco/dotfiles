@@ -1,7 +1,7 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	event = "VimEnter",
-	branch = "0.1.x",
+	branch = "master",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{
@@ -24,8 +24,18 @@ return {
 					},
 				},
 				-- preview = { hide_on_startup = true },
-				layout_strategy = "flex",
+				path_display = { "filename_first" },
+				dynamic_preview_title = true,
+				results_title = false,
+				prompt_title = false,
+				layout_strategy = "bottom_pane",
 				layout_config = {
+					bottom_pane = {
+						preview_cutoff = 1,
+						preview_width = 0.6,
+						prompt_position = "bottom",
+						height = 0.4,
+					},
 					vertical = {
 						width = function(_, cols, _)
 							return cols
@@ -34,11 +44,11 @@ return {
 							return rows
 						end,
 						prompt_position = "bottom",
-						-- preview_height = 0.6,
+						preview_cutoff = 1,
 					},
 					horizontal = {
 						anchor = "E",
-						width = 0.5,
+						preview_width = 0.6,
 					},
 				},
 			},

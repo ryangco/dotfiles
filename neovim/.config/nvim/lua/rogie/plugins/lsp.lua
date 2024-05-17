@@ -22,7 +22,6 @@ return {
 				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 				map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-				map("K", vim.lsp.buf.hover, "Hover Documentation")
 				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 				-- The following two autocommands are used to highlight references of the
 				-- word under your cursor when your cursor rests there for a little while.
@@ -44,6 +43,7 @@ return {
 				--
 				-- This may be unwanted, since they displace some of your code
 				if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+					vim.lsp.inlay_hint.enable()
 					map("<leader>th", function()
 						vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
 					end, "[T]oggle Inlay [H]ints")
@@ -108,12 +108,44 @@ return {
 				-- ["rust_analyzer"] = function ()
 				--     require("rust-tools").setup {}
 				-- end
-				["volar"] = function()
-					require("lspconfig").volar.setup({
-						filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-						init_options = {
+				-- ["volar"] = function()
+				-- 	require("lspconfig").volar.setup({
+				-- 		filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+				-- 		init_options = {
+				-- 			typescript = {
+				-- 				tsdk = vim.fn.getcwd() .. "node_modules/typescript/lib",
+				-- 			},
+				-- 		},
+				-- 	})
+				-- end,
+				["tsserver"] = function()
+					require("lspconfig").tsserver.setup({
+						settings = {
 							typescript = {
-								tsdk = vim.fn.getcwd() .. "node_modules/typescript/lib",
+								inlayHints = {
+									-- You can set this to 'all' or 'literals' to enable more hints
+									includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all'
+									includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+									includeInlayFunctionParameterTypeHints = false,
+									includeInlayVariableTypeHints = false,
+									includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+									includeInlayPropertyDeclarationTypeHints = false,
+									includeInlayFunctionLikeReturnTypeHints = true,
+									includeInlayEnumMemberValueHints = true,
+								},
+							},
+							javascript = {
+								inlayHints = {
+									-- You can set this to 'all' or 'literals' to enable more hints
+									includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all'
+									includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+									includeInlayVariableTypeHints = false,
+									includeInlayFunctionParameterTypeHints = false,
+									includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+									includeInlayPropertyDeclarationTypeHints = false,
+									includeInlayFunctionLikeReturnTypeHints = true,
+									includeInlayEnumMemberValueHints = true,
+								},
 							},
 						},
 					})

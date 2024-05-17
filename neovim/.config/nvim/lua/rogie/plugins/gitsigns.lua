@@ -8,6 +8,10 @@ return {
 				delete = { text = "_" },
 				topdelete = { text = "‾" },
 				changedelete = { text = "~" },
+				untracked = { text = "┆" },
+			},
+			current_line_blame_opts = {
+				virt_text_pos = "overlay", -- 'eol' | 'overlay' | 'right_align'
 			},
 			on_attach = function(bufnr)
 				local gitsigns = require("gitsigns")
