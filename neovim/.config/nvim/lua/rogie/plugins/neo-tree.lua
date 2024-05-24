@@ -15,7 +15,7 @@ return {
 			window = {
 				mappings = {
 					["="] = "close_window",
-					["<esc><esc><esc>"] = "close_window",
+					["<esc><esc>"] = "close_window",
 				},
 				position = "right",
 			},
