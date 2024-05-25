@@ -24,4 +24,4 @@ opt.hlsearch = true
 opt.conceallevel = 1
 opt.cmdheight = 0
 
-vim.cmd("colorscheme kanagawa")
+vim.cmd("colorscheme tokyonight")

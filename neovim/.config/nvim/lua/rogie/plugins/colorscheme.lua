@@ -9,6 +9,16 @@ return {
 				commentStyle = { italic = false },
 				statementStyle = { bold = false },
 				keywordStyle = { italic = false },
+				functionStyle = { bold = false },
+				typeStyle = { bold = false },
+				booleans = { bold = true },
+				semanticFunctions = { bold = true },
+				stringEscapes = { bold = true },
+				overrides = function()
+					return {
+						Boolean = { bold = false },
+					}
+				end,
 				colors = {
 					palette = {
 						sumiInk3 = "#000000",
