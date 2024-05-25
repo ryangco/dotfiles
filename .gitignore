@@ -5,3 +5,6 @@ test.sh
 spell/
 
 lazy-lock.json
+
+neovim/.config/lazygit
+neovim/.config/thefuck

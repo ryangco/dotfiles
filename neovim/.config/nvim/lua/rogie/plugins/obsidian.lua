@@ -21,7 +21,7 @@ return {
 			workspaces = {
 				{
 					name = "ObsidianVault",
-					path = "~/Dropbox/Apps/remotely-save/ObsidianVault",
+					path = "~/Obsidian",
 				},
 			},
 			notes_subdir = "notes",

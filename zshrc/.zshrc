@@ -127,7 +127,7 @@ export BAT_THEME=tokyonight_night
 
 # ---- Eza (better ls) -----
 
-alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias ls="eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions"
 
 # zxoide ZSH
 export PATH="$HOME/.local/bin:$PATH"
@@ -166,8 +166,6 @@ _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
 
-source ~/fzf-git.sh/fzf-git.sh
-
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
@@ -193,3 +191,9 @@ eval $(thefuck --alias FUCK)
 eval $(thefuck --alias fk)
 
 alias t="tmux new -A -s local"
+source /home/ubuntu/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
+export PATH=$PATH:/usr/local/go/bin
