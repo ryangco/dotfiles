@@ -25,6 +25,8 @@ return { -- Autocompletion
 		"saadparwaiz1/cmp_luasnip",
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-cmdline",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -60,6 +62,23 @@ return { -- Autocompletion
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "path" },
+				{ name = "buffer" },
+				{ name = "codeium" },
+			},
+		})
+		cmp.setup.cmdline(":", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = cmp.config.sources({
+				{ name = "path" },
+			}, {
+				{ name = "cmdline", max_item_count = 6 },
+			}),
+			matching = { disallow_symbol_nonprefix_matching = false },
+		})
+		cmp.setup.cmdline("/", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = "buffer", max_item_count = 6 },
 			},
 		})
 	end,
