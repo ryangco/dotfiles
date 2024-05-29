@@ -17,6 +17,7 @@ return {
 				overrides = function()
 					return {
 						Boolean = { bold = false },
+						["@lsp.typemod.function.readonly"] = { bold = false },
 					}
 				end,
 				colors = {
@@ -44,6 +45,20 @@ return {
 				keywords = { italic = false },
 				functions = { italic = false },
 				variables = { italic = false },
+			},
+		},
+	},
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+		opts = {
+			no_italic = true,
+			no_bold = true,
+			color_overrides = {
+				mocha = {
+					base = "#000000",
+				},
 			},
 		},
 	},

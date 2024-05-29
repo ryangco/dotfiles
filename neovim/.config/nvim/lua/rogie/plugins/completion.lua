@@ -67,7 +67,11 @@ return { -- Autocompletion
 			},
 		})
 		cmp.setup.cmdline(":", {
-			mapping = cmp.mapping.preset.cmdline(),
+			mapping = cmp.mapping.preset.cmdline({
+				["<TAB>"] = {
+					c = false,
+				},
+			}),
 			sources = cmp.config.sources({
 				{ name = "path" },
 			}, {
@@ -76,7 +80,11 @@ return { -- Autocompletion
 			matching = { disallow_symbol_nonprefix_matching = false },
 		})
 		cmp.setup.cmdline("/", {
-			mapping = cmp.mapping.preset.cmdline(),
+			mapping = cmp.mapping.preset.cmdline({
+				["<TAB>"] = {
+					c = false,
+				},
+			}),
 			sources = {
 				{ name = "buffer", max_item_count = 6 },
 			},

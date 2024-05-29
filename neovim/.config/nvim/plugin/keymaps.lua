@@ -54,6 +54,8 @@ end, { desc = "Togg[l]e Dark Mode", noremap = false, expr = true })
 set("n", "<leader>op", function()
 	if vim.g.colors_name == "tokyonight" then
 		return "<cmd>colorscheme kanagawa<cr>"
+	elseif vim.g.colors_name == "kanagawa" then
+		return "<cmd>colorscheme catppuccin<cr>"
 	else
 		return "<cmd>colorscheme tokyonight<cr>"
 	end

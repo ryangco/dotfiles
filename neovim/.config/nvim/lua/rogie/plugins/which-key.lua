@@ -6,7 +6,7 @@ return {
 
 		-- Document existing key chains
 		require("which-key").register({
-			["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
+			-- ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
 			["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
 			["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
 			["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
@@ -19,12 +19,46 @@ return {
 			["<leader>h"] = { "Git [H]unk" },
 		}, { mode = "v" })
 
+		-- NOTE: ChatGPT.nvim
+		require("which-key").register({
+			["<leader>c"] = {
+				name = "ChatGPT",
+				c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
+				e = { "<cmd>ChatGPTEditWithInstruction<CR>", "ChatGPT Edit with instruction", mode = { "n", "v" } },
+				s = { "<cmd>ChatGPTActAs<CR>", "ChatGPT Act A[s]", mode = { "n", "v" } },
+				l = { "<cmd>ChatGPTCompleteCode<CR>", "ChatGPT Comp[l]ete Code", mode = { "n", "v" } },
+				r = {
+					name = "Run",
+					r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit", mode = { "n", "v" } },
+					g = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction", mode = { "n", "v" } },
+					t = { "<cmd>ChatGPTRun translate<CR>", "Translate", mode = { "n", "v" } },
+					k = { "<cmd>ChatGPTRun keywords<CR>", "Keywords", mode = { "n", "v" } },
+					d = { "<cmd>ChatGPTRun docstring<CR>", "Docstring", mode = { "n", "v" } },
+					a = { "<cmd>ChatGPTRun add_tests<CR>", "Add Tests", mode = { "n", "v" } },
+					o = { "<cmd>ChatGPTRun optimize_code<CR>", "Optimize Code", mode = { "n", "v" } },
+					s = { "<cmd>ChatGPTRun summarize<CR>", "Summarize", mode = { "n", "v" } },
+					f = { "<cmd>ChatGPTRun fix_bugs<CR>", "Fix Bugs", mode = { "n", "v" } },
+					x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code", mode = { "n", "v" } },
+					l = {
+						"<cmd>ChatGPTRun code_readability_analysis<CR>",
+						"Code Readability Analysis",
+						mode = { "n", "v" },
+					},
+				},
+			},
+		})
+
 		-- NOTE: GP.nvim
 		-- VISUAL mode mappings
 		-- s, x, v modes are handled the same way by which_key
 		require("which-key").register({
-			-- ...
 			["<C-g>"] = {
+				h = {
+					name = "Custom [H]ooks",
+					u = { ":<C-u>'<,'>GpUnitTests<cr>", "Visual Unit Tests" },
+					e = { ":<C-u>'<,'>GpExplain<cr>", "Visual Explain" },
+					r = { ":<C-u>'<,'>GpCodeReview<cr>", "Visual Code Review" },
+				},
 				c = { ":<C-u>'<,'>GpChatNew<cr>", "Visual Chat New" },
 				p = { ":<C-u>'<,'>GpChatPaste<cr>", "Visual Chat Paste" },
 				t = { ":<C-u>'<,'>GpChatToggle<cr>", "Visual Toggle Chat" },
@@ -64,9 +98,8 @@ return {
 					t = { ":<C-u>'<,'>GpWhisperTabnew<cr>", "Whisper Tabnew" },
 				},
 			},
-			-- ...
 		}, {
-			mode = "v", -- VISUAL mode
+			mode = "v",
 			prefix = "",
 			buffer = nil,
 			silent = true,
@@ -76,8 +109,14 @@ return {
 
 		-- NORMAL mode mappings
 		require("which-key").register({
-			-- ...
 			["<C-g>"] = {
+				h = {
+					name = "Custom [H]ooks",
+					u = { "<cmd>GpUnitTests<cr>", "Unit Tests" },
+					e = { "<cmd>GpExplain<cr>", "Explain" },
+					r = { "<cmd>GpCodeReview<cr>", "Code Review" },
+					w = { "<cmd>GpBufferChatNew<cr>", "[W]hole Buffer Context" },
+				},
 				c = { "<cmd>GpChatNew<cr>", "New Chat" },
 				t = { "<cmd>GpChatToggle<cr>", "Toggle Chat" },
 				f = { "<cmd>GpChatFinder<cr>", "Chat Finder" },
@@ -116,9 +155,8 @@ return {
 					t = { "<cmd>GpWhisperTabnew<cr>", "Whisper Tabnew" },
 				},
 			},
-			-- ...
 		}, {
-			mode = "n", -- NORMAL mode
+			mode = "n",
 			prefix = "",
 			buffer = nil,
 			silent = true,
@@ -128,8 +166,14 @@ return {
 
 		-- INSERT mode mappings
 		require("which-key").register({
-			-- ...
 			["<C-g>"] = {
+				h = {
+					name = "Custom [H]ooks",
+					u = { "<cmd>GpUnitTests<cr>", "Unit Tests" },
+					e = { "<cmd>GpExplain<cr>", "Explain" },
+					r = { "<cmd>GpCodeReview<cr>", "Code Review" },
+					w = { "<cmd>GpBufferChatNew<cr>", "[W]hole Buffer Context" },
+				},
 				c = { "<cmd>GpChatNew<cr>", "New Chat" },
 				t = { "<cmd>GpChatToggle<cr>", "Toggle Chat" },
 				f = { "<cmd>GpChatFinder<cr>", "Chat Finder" },
@@ -168,9 +212,8 @@ return {
 					t = { "<cmd>GpWhisperTabnew<cr>", "Whisper Tabnew" },
 				},
 			},
-			-- ...
 		}, {
-			mode = "i", -- INSERT mode
+			mode = "i",
 			prefix = "",
 			buffer = nil,
 			silent = true,
