@@ -75,7 +75,7 @@ return { -- Autocompletion
 			sources = cmp.config.sources({
 				{ name = "path" },
 			}, {
-				{ name = "cmdline", max_item_count = 6 },
+				{ name = "cmdline", max_item_count = 10 },
 			}),
 			matching = { disallow_symbol_nonprefix_matching = false },
 		})
@@ -86,7 +86,7 @@ return { -- Autocompletion
 				},
 			}),
 			sources = {
-				{ name = "buffer", max_item_count = 6 },
+				{ name = "buffer", max_item_count = 10 },
 			},
 		})
 	end,

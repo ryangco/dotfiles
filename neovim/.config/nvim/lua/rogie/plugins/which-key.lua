@@ -52,7 +52,7 @@ return {
 		-- VISUAL mode mappings
 		-- s, x, v modes are handled the same way by which_key
 		require("which-key").register({
-			["<C-g>"] = {
+			["<leader>g"] = {
 				h = {
 					name = "Custom [H]ooks",
 					u = { ":<C-u>'<,'>GpUnitTests<cr>", "Visual Unit Tests" },
@@ -109,7 +109,7 @@ return {
 
 		-- NORMAL mode mappings
 		require("which-key").register({
-			["<C-g>"] = {
+			["<leader>g"] = {
 				h = {
 					name = "Custom [H]ooks",
 					u = { "<cmd>GpUnitTests<cr>", "Unit Tests" },
@@ -166,7 +166,7 @@ return {
 
 		-- INSERT mode mappings
 		require("which-key").register({
-			["<C-g>"] = {
+			["<leader>g"] = {
 				h = {
 					name = "Custom [H]ooks",
 					u = { "<cmd>GpUnitTests<cr>", "Unit Tests" },
