@@ -1,7 +1,22 @@
 return {
 	{
+		"folke/tokyonight.nvim",
+		priority = 1000,
+		opts = {
+			on_colors = function(colors)
+				colors.bg = "#000000"
+				colors.bg_dark = "#000000"
+			end,
+			styles = {
+				comments = { italic = false },
+				keywords = { italic = false },
+				functions = { italic = false },
+				variables = { italic = false },
+			},
+		},
+	},
+	{
 		"rebelot/kanagawa.nvim",
-		lazy = false,
 		priority = 1000,
 		opts = {},
 		config = function()
@@ -30,23 +45,6 @@ return {
 				},
 			})
 		end,
-	},
-	{
-		"folke/tokyonight.nvim",
-		priority = 1000,
-		opts = {
-			style = "night",
-			on_colors = function(colors)
-				colors.bg = "#000000"
-				colors.bg_dark = "#000000"
-			end,
-			styles = {
-				comments = { italic = false },
-				keywords = { italic = false },
-				functions = { italic = false },
-				variables = { italic = false },
-			},
-		},
 	},
 	{
 		"catppuccin/nvim",

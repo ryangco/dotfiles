@@ -13,9 +13,8 @@ return {
 		"jackMort/ChatGPT.nvim",
 		event = "VeryLazy",
 		config = function()
-			local home = vim.fn.expand("$HOME")
 			require("chatgpt").setup({
-				api_key_cmd = "cat " .. home .. "/secrets/OAI_API_KEY.txt",
+				api_key_cmd = "cat " .. vim.fn.expand("$HOME") .. "/secrets/OAI_API_KEY.txt",
 				openai_params = {
 					model = "gpt-4o",
 				},
@@ -32,13 +31,12 @@ return {
 		"robitx/gp.nvim",
 		event = "VeryLazy",
 		opts = {
-			openai_api_key = { "cat", "/home/gie/secrets/OAI_API_KEY.txt" },
+			openai_api_key = { "cat", vim.fn.expand("$HOME") .. "/secrets/OAI_API_KEY.txt" },
 			agents = {
 				{
 					name = "ChatGPT4",
 					chat = true,
 					command = false,
-					-- string with model name or table with model name and parameters
 					model = { model = "gpt-4o", temperature = 1.1, top_p = 1 },
 					-- system prompt (use this to specify the persona/role of the AI)
 					system_prompt = "You are a general AI assistant.\n\n"
@@ -55,7 +53,6 @@ return {
 					name = "ChatGPT3-5",
 					chat = true,
 					command = false,
-					-- string with model name or table with model name and parameters
 					model = { model = "gpt-3.5-turbo", temperature = 1.1, top_p = 1 },
 					-- system prompt (use this to specify the persona/role of the AI)
 					system_prompt = "You are a general AI assistant.\n\n"
@@ -72,7 +69,6 @@ return {
 					name = "CodeGPT4",
 					chat = false,
 					command = true,
-					-- string with model name or table with model name and parameters
 					model = { model = "gpt-4o", temperature = 0.8, top_p = 1 },
 					-- system prompt (use this to specify the persona/role of the AI)
 					system_prompt = "You are an AI working as a code editor.\n\n"
@@ -83,7 +79,6 @@ return {
 					name = "CodeGPT3-5",
 					chat = false,
 					command = true,
-					-- string with model name or table with model name and parameters
 					model = { model = "gpt-3.5-turbo", temperature = 0.8, top_p = 1 },
 					-- system prompt (use this to specify the persona/role of the AI)
 					system_prompt = "You are an AI working as a code editor.\n\n"
