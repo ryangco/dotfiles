@@ -1,4 +1,4 @@
-return { -- Autocompletion
+return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
@@ -18,6 +18,10 @@ return { -- Autocompletion
 					"rafamadriz/friendly-snippets",
 					config = function()
 						require("luasnip.loaders.from_vscode").lazy_load()
+						require("luasnip").filetype_extend("elixir", { "eelixir" })
+						require("luasnip").filetype_extend("ruby", { "rails" })
+						require("luasnip").filetype_extend("javascriptreact", { "html" })
+						require("luasnip").filetype_extend("typescriptreact", { "html" })
 					end,
 				},
 			},

@@ -16,40 +16,44 @@ return {
 		},
 	},
 	{
-		"rebelot/kanagawa.nvim",
-		priority = 1000,
-		opts = {},
+		"ryangco/github-nvim-theme",
+		lazy = true,
 		config = function()
-			require("kanagawa").setup({
-				commentStyle = { italic = false },
-				statementStyle = { bold = false },
-				keywordStyle = { italic = false },
-				functionStyle = { bold = false },
-				typeStyle = { bold = false },
-				booleans = { bold = true },
-				semanticFunctions = { bold = true },
-				stringEscapes = { bold = true },
-				overrides = function()
-					return {
-						Boolean = { bold = false },
-						["@lsp.typemod.function.readonly"] = { bold = false },
-					}
-				end,
-				colors = {
-					palette = {
-						sumiInk3 = "#000000",
-						sumiInk4 = "#000000",
-						dragonBlack3 = "#000000",
-						dragonBlack4 = "#000000",
-					},
-				},
-			})
+			require("github-theme").setup({})
 		end,
+	},
+	{
+		"rebelot/kanagawa.nvim",
+		lazy = true,
+		opts = {
+			commentStyle = { italic = false },
+			statementStyle = { bold = false },
+			keywordStyle = { italic = false },
+			functionStyle = { bold = false },
+			typeStyle = { bold = false },
+			booleans = { bold = true },
+			semanticFunctions = { bold = true },
+			stringEscapes = { bold = true },
+			overrides = function()
+				return {
+					Boolean = { bold = false },
+					["@lsp.typemod.function.readonly"] = { bold = false },
+				}
+			end,
+			colors = {
+				palette = {
+					sumiInk3 = "#000000",
+					sumiInk4 = "#000000",
+					dragonBlack3 = "#000000",
+					dragonBlack4 = "#000000",
+				},
+			},
+		},
 	},
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		priority = 1000,
+		lazy = true,
 		opts = {
 			no_italic = true,
 			no_bold = true,

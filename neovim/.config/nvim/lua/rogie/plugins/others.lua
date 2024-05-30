@@ -5,7 +5,15 @@ return {
 		opts = {},
 	},
 	{ "tpope/vim-sleuth" },
-	{ "numToStr/Comment.nvim", opts = {} },
+	{
+		"numToStr/Comment.nvim",
+		dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+		config = function()
+			require("Comment").setup({
+				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+			})
+		end,
+	},
 	{
 		"folke/todo-comments.nvim",
 		event = "VimEnter",
@@ -14,13 +22,8 @@ return {
 	},
 	{
 		"windwp/nvim-ts-autotag",
-		ft = {
-			"javascript",
-			"typescript",
-			"typescriptreact",
-		},
 		config = function()
-			require("nvim-ts-autotag").setup()
+			require("nvim-ts-autotag").setup({})
 		end,
 	},
 }
