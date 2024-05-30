@@ -77,8 +77,10 @@ return {
 				"volar",
 				"tsserver",
 				"tailwindcss",
+				"cssls",
 				"bashls",
 				"jsonls",
+				"eslint-lsp"
 				-- 'markdownlint',
 			},
 			automatic_installation = { exclude = "lua_ls" },

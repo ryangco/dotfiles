@@ -18,6 +18,7 @@ return { -- Highlight, edit, and navigate code
 			"javascript",
 			"typescript",
 			"tsx",
+			"css",
 			"go",
 			"regex",
 		},
