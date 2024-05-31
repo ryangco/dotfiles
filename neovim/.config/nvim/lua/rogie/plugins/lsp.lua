@@ -54,7 +54,7 @@ return {
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 		local servers = {
 			-- clangd = {},
-			-- gopls = {},
+			gopls = {},
 			-- pyright = {},
 			-- rust_analyzer = {},
 			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -80,7 +80,6 @@ return {
 				"cssls",
 				"bashls",
 				"jsonls",
-				"eslint-lsp"
 				-- 'markdownlint',
 			},
 			automatic_installation = { exclude = "lua_ls" },
@@ -186,6 +185,7 @@ return {
 				}
 			end,
 			formatters_by_ft = {
+				go = { { "goimports-reviser", "golines", "gofumpt" } },
 				lua = { "stylua" },
 				javascript = { { "prettierd", "prettier" } },
 				javascriptreact = { { "prettierd", "prettier" } },

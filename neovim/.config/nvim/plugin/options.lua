@@ -19,6 +19,7 @@ opt.splitright = true
 opt.splitbelow = true
 opt.inccommand = "split"
 opt.cursorline = true
+opt.cursorlineopt = "number"
 opt.scrolloff = 10
 opt.hlsearch = true
 opt.conceallevel = 1

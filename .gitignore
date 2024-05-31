@@ -10,3 +10,4 @@ neovim/.config/lazygit
 neovim/.config/lazydocker
 neovim/.config/thefuck
 neovim/.config/htop
+neovim/.config/go
