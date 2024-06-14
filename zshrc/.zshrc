@@ -197,3 +197,6 @@ export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 export PATH=$PATH:/usr/local/go/bin
+
+# Turso
+export PATH="/home/ubuntu/.turso:$PATH"

@@ -24,5 +24,3 @@ opt.scrolloff = 10
 opt.hlsearch = true
 opt.conceallevel = 1
 opt.cmdheight = 0
-
-vim.cmd("colorscheme tokyonight")

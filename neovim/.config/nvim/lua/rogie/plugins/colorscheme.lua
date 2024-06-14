@@ -1,7 +1,6 @@
 return {
 	{
 		"folke/tokyonight.nvim",
-		priority = 1000,
 		opts = {
 			on_colors = function(colors)
 				colors.bg = "#000000"
@@ -16,10 +15,29 @@ return {
 		},
 	},
 	{
-		"ryangco/github-nvim-theme",
+		"rose-pine/neovim",
 		lazy = true,
+		name = "rose-pine",
 		config = function()
-			require("github-theme").setup({})
+			require("rose-pine").setup({
+				disable_background = true,
+				disable_float_background = true,
+				styles = {
+					bold = false,
+					italic = false,
+				},
+			})
+		end,
+	},
+	{
+		"projekt0n/github-nvim-theme",
+		priority = 1000,
+		config = function()
+			require("github-theme").setup({
+				disable_background = true,
+				disable_float_background = true,
+			})
+			vim.cmd("colorscheme github_dark")
 		end,
 	},
 	{

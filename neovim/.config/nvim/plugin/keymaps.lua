@@ -57,7 +57,7 @@ set("n", "<leader>op", function()
 	elseif vim.g.colors_name == "kanagawa" then
 		return "<cmd>colorscheme catppuccin<cr>"
 	elseif vim.g.colors_name == "catppuccin-mocha" then
-		return "<cmd>colorscheme github_dark_high_contrast<cr>"
+		return "<cmd>colorscheme github_dark<cr>"
 	else
 		return "<cmd>colorscheme tokyonight<cr>"
 	end

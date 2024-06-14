@@ -32,4 +32,9 @@ return {
 			require("nvim-ts-autotag").setup({})
 		end,
 	},
+	{
+		"NStefan002/screenkey.nvim",
+		-- lazy = false,
+		version = "*",
+	},
 }
