@@ -68,6 +68,8 @@ return {
 			{ desc = "[S]earch [H]idden Files" }
 		)
 		vim.keymap.set("n", "<leader>sp", builtin.help_tags, { desc = "[S]earch Hel[P]" })
+		vim.keymap.set("n", "<leader>sq", builtin.quickfix, { desc = "[S]earch [Q]uickfix" })
+		vim.keymap.set("n", "<leader>sm", builtin.marks, { desc = "[S]earch [M]arks" })
 		vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 		vim.keymap.set("n", "<leader>sF", builtin.find_files, { desc = "[S]earch [F]iles" })
 		vim.keymap.set("n", "<leader>sf", builtin.git_files, { desc = "[S]earch Git[f]iles" })
