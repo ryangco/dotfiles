@@ -34,8 +34,11 @@ return {
 		priority = 1000,
 		config = function()
 			require("github-theme").setup({
-				disable_background = true,
-				disable_float_background = true,
+				specs = {
+					all = {
+						bg1 = "#000000",
+					},
+				},
 			})
 			vim.cmd("colorscheme github_dark")
 		end,
