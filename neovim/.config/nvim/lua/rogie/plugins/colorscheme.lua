@@ -16,7 +16,7 @@ return {
 	},
 	{
 		"rose-pine/neovim",
-		lazy = true,
+		priority = 1000,
 		name = "rose-pine",
 		config = function()
 			require("rose-pine").setup({
@@ -27,11 +27,12 @@ return {
 					italic = false,
 				},
 			})
+			vim.cmd("colorscheme rose-pine")
 		end,
 	},
 	{
 		"projekt0n/github-nvim-theme",
-		priority = 1000,
+		lazy = true,
 		config = function()
 			require("github-theme").setup({
 				specs = {
@@ -40,7 +41,6 @@ return {
 					},
 				},
 			})
-			vim.cmd("colorscheme github_dark")
 		end,
 	},
 	{
