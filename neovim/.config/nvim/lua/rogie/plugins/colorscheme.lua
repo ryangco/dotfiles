@@ -16,7 +16,7 @@ return {
 	},
 	{
 		"rose-pine/neovim",
-		priority = 1000,
+		lazy = true,
 		name = "rose-pine",
 		config = function()
 			require("rose-pine").setup({
@@ -27,20 +27,14 @@ return {
 					italic = false,
 				},
 			})
-			vim.cmd("colorscheme rose-pine")
 		end,
 	},
 	{
-		"projekt0n/github-nvim-theme",
-		lazy = true,
+		"ryangco/github-nvim-theme",
+		priority = 1000,
 		config = function()
-			require("github-theme").setup({
-				specs = {
-					all = {
-						bg1 = "#000000",
-					},
-				},
-			})
+			require("github-theme").setup({})
+			vim.cmd("colorscheme github_dark")
 		end,
 	},
 	{
@@ -84,5 +78,21 @@ return {
 				},
 			},
 		},
+	},
+	{
+		"EdenEast/nightfox.nvim",
+		lazy = true,
+		config = function()
+			require("nightfox").setup({
+				palettes = {
+					nightfox = {
+						bg1 = "#000000",
+					},
+					carbonfox = {
+						bg1 = "#000000",
+					},
+				},
+			})
+		end,
 	},
 }
