@@ -99,7 +99,7 @@ return {
 				--    https://github.com/pmizio/typescript-tools.nvim
 				--
 				-- But for many setups, the LSP (`tsserver`) will work just fine
-				tsserver = {},
+				ts_ls = {},
 			}
 			require("mason").setup()
 			local ensure_installed = vim.tbl_keys(servers or {})
@@ -111,7 +111,7 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"volar",
-					"tsserver",
+					"ts_ls",
 					"tailwindcss",
 					"cssls",
 					"bashls",
@@ -138,8 +138,8 @@ return {
 					-- 		},
 					-- 	})
 					-- end,
-					["tsserver"] = function()
-						require("lspconfig").tsserver.setup({
+					["ts_ls"] = function()
+						require("lspconfig").ts_ls.setup({
 							settings = {
 								typescript = {
 									inlayHints = {
