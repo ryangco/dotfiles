@@ -1,6 +1,7 @@
 return {
 	{
 		"folke/tokyonight.nvim",
+		priority = 1000,
 		opts = {
 			on_colors = function(colors)
 				colors.bg = "#000000"
@@ -31,10 +32,9 @@ return {
 	},
 	{
 		"ryangco/github-nvim-theme",
-		priority = 1000,
+		lazy = true,
 		config = function()
 			require("github-theme").setup({})
-			vim.cmd("colorscheme github_dark")
 		end,
 	},
 	{

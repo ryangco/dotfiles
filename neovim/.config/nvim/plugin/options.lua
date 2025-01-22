@@ -1,3 +1,4 @@
+vim.cmd("colorscheme tokyonight")
 local opt = vim.opt
 
 opt.expandtab = true
