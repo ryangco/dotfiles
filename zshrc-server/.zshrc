@@ -81,6 +81,7 @@ plugins=(
 	git
 	dnf
 	zsh-autosuggestions
+	zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -167,7 +168,6 @@ _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
 
-source ~/fzf-git.sh/fzf-git.sh
 
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 
@@ -192,3 +192,6 @@ _fzf_comprun() {
 eval $(thefuck --alias)
 eval $(thefuck --alias FUCK)
 eval $(thefuck --alias fk)
+
+# Turso
+export PATH="$PATH:/home/gie/.turso"
