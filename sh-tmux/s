@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+tmux new-session -A -s work
+tmux send-keys -t work:d "cd ~/w/rgs-system" enter
+tmux send-keys -t work:d "pm2 logs --timestamp" enter
+tmux send-keys -t work:a "sudo tail -f /var/log/nginx/access.log" enter
