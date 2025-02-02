@@ -28,6 +28,38 @@ return {
 			mode = "v",
 		})
 
+		wk.add({
+			{
+				"<C-a>",
+				"<cmd>CodeCompanionActions<cr>",
+				desc = "Code Compaion Actions",
+				nowait = true,
+				remap = false,
+				mode = { "n", "v" },
+			},
+			{
+				"<LocalLeader>a",
+				"<cmd>CodeCompanionChat Toggle<cr>",
+				desc = "Code Companion Toggle Chat",
+				nowait = true,
+				remap = false,
+				mode = { "n", "v" },
+			},
+			{
+				"ga",
+				"<cmd>CodeCompanionChat Add<cr>",
+				desc = "Code Companion Toggle Chat",
+				nowait = true,
+				remap = false,
+				mode = { "v" },
+			},
+			-- vim.api.nvim_set_keymap({ "n", "v" }, "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+			-- vim.api.nvim_set_keymap("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+			--
+			-- Expand 'cc' into 'CodeCompanion' in the command line
+			-- vim.cmd([[cab cc CodeCompanion]])
+		})
+
 		-- NOTE: ChatGPT.nvim
 		wk.add({
 			{

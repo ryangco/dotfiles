@@ -194,4 +194,4 @@ eval $(thefuck --alias FUCK)
 eval $(thefuck --alias fk)
 
 # Turso
-export PATH="$PATH:/home/gie/.turso"
+export PATH="$PATH:~/.turso"

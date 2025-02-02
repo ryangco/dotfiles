@@ -18,3 +18,4 @@ neovim/.config/create-next-app-nodejs
 neovim/.config/dlv
 neovim/.config/payload-nodejs
 neovim/.config/configstore
+neovim/.config/rclone
