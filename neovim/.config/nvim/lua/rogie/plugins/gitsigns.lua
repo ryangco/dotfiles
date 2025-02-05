@@ -2,14 +2,7 @@ return {
 	{
 		"lewis6991/gitsigns.nvim",
 		opts = {
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-				untracked = { text = "┆" },
-			},
+			numhl = true,
 			current_line_blame_opts = {
 				virt_text_pos = "overlay", -- 'eol' | 'overlay' | 'right_align'
 			},
