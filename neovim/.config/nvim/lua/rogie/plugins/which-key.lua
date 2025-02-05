@@ -61,7 +61,7 @@ return {
 		})
 
 		-- NOTE: ChatGPT.nvim
-		wk.add({
+		--[[ wk.add({
 			{
 				mode = { "n", "v" },
 				{ "<leader>c", group = "ChatGPT" },
@@ -339,6 +339,6 @@ return {
 				{ "<C-g>ww", "<cmd>GpWhisper<cr>", desc = "Whisper", nowait = true, remap = false },
 				{ "<C-g>x", "<cmd>GpContext<cr>", desc = "Toggle GpContext", nowait = true, remap = false },
 			},
-		})
+		}) ]]
 	end,
 }

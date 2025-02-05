@@ -26,7 +26,7 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				-- group = vim.api.nvim_create_augroup("Rogie-LSP", { clear = true }),
 				callback = function(event)
-					vim.keymap.set("i", "<C-h>", function()
+					--[[ vim.keymap.set("i", "<C-h>", function()
 						vim.lsp.buf.signature_help()
 					end, { desc = "Help Guide" })
 					local map = function(keys, func, desc)
@@ -69,7 +69,7 @@ return {
 						map("<leader>th", function()
 							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 						end, "[T]oggle Inlay [H]ints")
-					end
+					end ]]
 				end,
 			})
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -104,7 +104,7 @@ return {
 			require("mason").setup()
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
-				-- "stylua", -- Used to format Lua code
+				"stylua", -- Used to format Lua code
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -118,7 +118,7 @@ return {
 					"jsonls",
 					-- 'markdownlint',
 				},
-				automatic_installation = { exclude = "lua_ls" },
+				-- automatic_installation = { exclude = "lua_ls" },
 				handlers = {
 					function(server_name) -- default handler (optional)
 						require("lspconfig")[server_name].setup({})
@@ -244,7 +244,7 @@ return {
 					["_"] = { { "prettierd", "prettier" } },
 				},
 			})
-			vim.keymap.set("n", "<leader>f", function()
+			vim.keymap.set("n", "<leader>F", function()
 				require("conform").format({ async = true })
 			end, { desc = "[F]ormat buffer" })
 		end,
