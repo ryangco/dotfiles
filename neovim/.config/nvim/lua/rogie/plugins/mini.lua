@@ -6,5 +6,6 @@ return { -- Collection of various small independent plugins/modules
 		-- vim.g.miniindentscope_disable = true
 		require("mini.surround").setup()
 		require("mini.bracketed").setup()
+		require("mini.icons").setup()
 	end,
 }

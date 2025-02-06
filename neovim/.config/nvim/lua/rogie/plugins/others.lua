@@ -49,11 +49,9 @@ return {
 		version = "*",
 		opts = { disable = { buftypes = { "terminal" } } },
 		init = function()
-			vim.api.nvim_create_autocmd("VimEnter", {
-				group = vim.api.nvim_create_augroup("AutostartScreenkey", {}),
-				command = "Screenkey toggle",
-				desc = "Autostart Screenkey on VimEnter",
-			})
+			vim.keymap.set("n", "<leader>tsk", function()
+				vim.cmd("Screenkey toggle")
+			end, { desc = "[T]oggle [S]creen[K]ey" })
 		end,
 	},
 }
