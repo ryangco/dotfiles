@@ -8,6 +8,16 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
+		init = function()
+			-- Obsidian
+			vim.keymap.set("n", "gf", function()
+				if require("obsidian").util.cursor_on_markdown_link() then
+					return "<cmd>ObsidianFollowLink<CR>"
+				else
+					return "gf"
+				end
+			end, { noremap = false, expr = true })
+		end,
 		keys = {
 			{ "<leader>on", "<cmd>ObsidianNew<cr>", desc = "New Obsidian note", mode = "n" },
 			{ "<leader>oo", "<cmd>ObsidianSearch<cr>", desc = "Search Obsidian notes", mode = "n" },

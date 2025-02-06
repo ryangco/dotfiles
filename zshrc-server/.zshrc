@@ -195,3 +195,5 @@ eval $(thefuck --alias fk)
 
 # Turso
 export PATH="$PATH:~/.turso"
+
+export PATH=$PATH:/usr/local/go/bin

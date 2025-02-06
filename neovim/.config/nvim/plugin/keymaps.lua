@@ -13,23 +13,6 @@ set("n", "<C-u>", "<C-u>zz")
 set("n", "n", "nzz")
 set("n", "N", "Nzz")
 
--- Mini Indent
-set(
-	"n",
-	"<leader>is",
-	"<cmd>lua vim.g.miniindentscope_disable = not vim.g.miniindentscope_disable<CR>",
-	{ desc = "Indent Scope" }
-)
-
--- Obsidian
-set("n", "gf", function()
-	if require("obsidian").util.cursor_on_markdown_link() then
-		return "<cmd>ObsidianFollowLink<CR>"
-	else
-		return "gf"
-	end
-end, { noremap = false, expr = true })
-
 -- osc52 working with stock wezterm
 vim.g.clipboard = {
 	name = "OSC 52",
@@ -58,7 +41,7 @@ set("n", "<leader>op", function()
 		return "<cmd>colorscheme catppuccin<cr>"
 	elseif vim.g.colors_name == "catppuccin-mocha" then
 		return "<cmd>colorscheme github_dark<cr>"
-	else
+	elseif vim.g.colorscheme == "github_dark" then
 		return "<cmd>colorscheme tokyonight<cr>"
 	end
 end, { desc = "Toggle [P]reSelected Theme", noremap = false, expr = true })
@@ -71,7 +54,7 @@ set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]ui
 -- is not what someone will guess without a bit more experience.
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+-- set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows

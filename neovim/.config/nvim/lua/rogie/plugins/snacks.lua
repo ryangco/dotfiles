@@ -5,8 +5,10 @@ return {
 		lazy = false,
 		---@type snacks.Config
 		opts = {
+			-- scroll = { enabled = true },
 			bigfile = { enabled = true },
 			dashboard = { enabled = true },
+			gitbrowse = { enabled = true },
 			indent = {
 				enabled = true,
 				chunk = {
@@ -24,26 +26,31 @@ return {
 			notifier = {
 				enabled = true,
 				timeout = 3000,
-			},
-			explorer = {
-				enabled = true,
-				layout = "right",
+				-- top_down = false,
 			},
 			picker = {
 				enabled = true,
 				matcher = { frecency = true },
+				sources = {
+					explorer = {
+						auto_close = true,
+						layout = { layout = { position = "right" } },
+						hidden = true,
+					},
+					files = { hidden = true },
+				},
 				layout = {
 					preset = "ivy",
 				},
-				layouts = {
-					sidebar = {
-						layout = { position = "right" },
+				formatters = {
+					file = {
+						filename_first = true,
 					},
 				},
 			},
 			quickfile = { enabled = true },
 			animate = { enabled = true },
-			-- scroll = { enabled = true },
+			scope = { enabled = true },
 			statuscolumn = { enabled = true },
 			words = { enabled = true },
 			toggle = { enabled = true },
@@ -296,7 +303,7 @@ return {
 				desc = "Git Status",
 			},
 			{
-				"<leader>gd",
+				"<leader>gD",
 				function()
 					Snacks.picker.git_diff()
 				end,

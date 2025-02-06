@@ -1,11 +1,4 @@
 return {
-	--[[ {
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		---@module "ibl"
-		---@type ibl.config
-		opts = {},
-	}, ]]
 	{ "tpope/vim-sleuth" },
 	{
 		"numToStr/Comment.nvim",
@@ -21,6 +14,22 @@ return {
 		event = "VimEnter",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = true },
+		keys = {
+			{
+				"<leader>st",
+				function()
+					Snacks.picker.todo_comments()
+				end,
+				desc = "Todo",
+			},
+			{
+				"<leader>sT",
+				function()
+					Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } })
+				end,
+				desc = "Todo/Fix/Fixme",
+			},
+		},
 	},
 	{
 		"windwp/nvim-ts-autotag",
@@ -38,5 +47,13 @@ return {
 		"NStefan002/screenkey.nvim",
 		-- lazy = false,
 		version = "*",
+		opts = { disable = { buftypes = { "terminal" } } },
+		init = function()
+			vim.api.nvim_create_autocmd("VimEnter", {
+				group = vim.api.nvim_create_augroup("AutostartScreenkey", {}),
+				command = "Screenkey toggle",
+				desc = "Autostart Screenkey on VimEnter",
+			})
+		end,
 	},
 }
