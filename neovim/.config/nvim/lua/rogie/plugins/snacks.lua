@@ -37,7 +37,9 @@ return {
 						layout = { layout = { position = "right" } },
 						hidden = true,
 					},
+					buffers = { hidden = true },
 					files = { hidden = true },
+					grep = { hidden = true },
 				},
 				layout = {
 					preset = "ivy",
@@ -160,6 +162,7 @@ return {
 					Snacks.terminal()
 				end,
 				desc = "Toggle Terminal",
+				mode = { "n" },
 			},
 			{
 				"<c-_>",
@@ -167,6 +170,19 @@ return {
 					Snacks.terminal()
 				end,
 				desc = "which_key_ignore",
+				mode = { "n" },
+			},
+			{
+				"<c-/>",
+				"<cmd>close<cr>",
+				desc = "Toggle Terminal",
+				mode = { "t" },
+			},
+			{
+				"<c-_>",
+				"<cmd>close<cr>",
+				desc = "which_key_ignore",
+				mode = { "t" },
 			},
 			{
 				"]]",
