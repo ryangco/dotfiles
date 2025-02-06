@@ -45,6 +45,13 @@ return {
 				layout = {
 					preset = "ivy",
 				},
+				layouts = {
+					sidebar = {
+						layout = {
+							min_width = 30,
+						},
+					},
+				},
 				formatters = {
 					file = {
 						filename_first = true,
