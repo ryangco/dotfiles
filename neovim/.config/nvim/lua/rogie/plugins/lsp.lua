@@ -179,9 +179,6 @@ return {
 					return true
 				end,
 			})
-			vim.keymap.set("n", "<leader>F", function()
-				require("conform").format({ async = true })
-			end, { desc = "[F]ormat buffer" })
 		end,
 	},
 }

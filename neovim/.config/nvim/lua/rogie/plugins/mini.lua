@@ -7,5 +7,6 @@ return { -- Collection of various small independent plugins/modules
 		require("mini.surround").setup()
 		require("mini.bracketed").setup()
 		require("mini.icons").setup()
+		require("mini.snippets").setup()
 	end,
 }
