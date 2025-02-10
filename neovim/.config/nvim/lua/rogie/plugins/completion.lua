@@ -160,6 +160,7 @@ return {
 				{ name = "path" },
 				{ name = "buffer" },
 				{ name = "codeium" },
+				{ name = "supermaven" },
 				{ name = "emoji" },
 				{ name = "dictionary", keyword_length = 3 },
 			},

@@ -114,7 +114,12 @@ return {
 			vim.keymap.set("i", "<A-f>", require("neocodeium").accept)
 		end,
 	},
-
+	{
+		"supermaven-inc/supermaven-nvim",
+		opts = {
+			disable_inline_completion = true,
+		},
+	},
 	{
 		"jackMort/ChatGPT.nvim",
 		event = "VeryLazy",
