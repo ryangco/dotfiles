@@ -22,9 +22,34 @@ return {
 			{ "folke/neodev.nvim", opts = {} },
 			"stevearc/conform.nvim",
 		},
-		config = function()
+		opts = {
+			servers = {
+				lua_ls = {},
+				ts_ls = {},
+				volar = {},
+				tailwindcss = {},
+				cssls = {},
+				bashls = {},
+				jsonls = {},
+				gopls = {},
+				pyright = {},
+			},
+		},
+		config = function(_, opts)
+			--[[ local lspconfig = require("lspconfig")
+			for server, config in pairs(opts.servers) do
+				-- passing config.capabilities to blink.cmp merges with the capabilities in your
+				-- `opts[server].capabilities, if you've defined it
+				config.capabilities = vim.tbl_deep_extend(
+					"force",
+					vim.lsp.protocol.make_client_capabilities(),
+					require("blink.cmp").get_lsp_capabilities(config.capabilities)
+				)
+				lspconfig[server].setup(config)
+			end ]]
+
 			vim.api.nvim_create_autocmd("LspAttach", {
-				-- group = vim.api.nvim_create_augroup("Rogie-LSP", { clear = true }),
+				group = vim.api.nvim_create_augroup("Rogie-LSP", { clear = true }),
 				callback = function(event)
 					vim.keymap.set("i", "<C-h>", function()
 						vim.lsp.buf.signature_help()

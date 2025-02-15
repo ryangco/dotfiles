@@ -197,3 +197,6 @@ eval $(thefuck --alias fk)
 export PATH="$PATH:~/.turso"
 
 export PATH=$PATH:/usr/local/go/bin
+
+export EDITOR=nvim
+export VISUAL=nvim
