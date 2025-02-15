@@ -60,6 +60,8 @@
 -- 			snippets = { preset = "luasnip" },
 -- 			sources = {
 -- 				default = {
+-- 					"lazydev",
+-- 					"codeium",
 -- 					"dictionary",
 -- 					"lsp",
 -- 					"path",
@@ -67,7 +69,6 @@
 -- 					"buffer",
 -- 					"emoji",
 -- 					"supermaven",
--- 					"codeium",
 -- 					"digraphs",
 -- 				},
 -- 				providers = {
@@ -77,6 +78,12 @@
 -- 						opts = {
 -- 							use_show_condition = false,
 -- 						},
+-- 					},
+-- 					lazydev = {
+-- 						name = "LazyDev",
+-- 						module = "lazydev.integrations.blink",
+-- 						-- make lazydev completions top priority (see `:h blink.cmp`)
+-- 						score_offset = 100,
 -- 					},
 -- 					buffer = {
 -- 						opts = {
@@ -199,6 +206,7 @@ return {
 		"hrsh7th/cmp-cmdline",
 		"hrsh7th/cmp-emoji",
 		"uga-rosa/cmp-dictionary",
+		"dmitmel/cmp-digraphs",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -238,7 +246,9 @@ return {
 				{ name = "codeium" },
 				{ name = "supermaven" },
 				{ name = "emoji" },
+				{ name = "digraphs" },
 				{ name = "dictionary", keyword_length = 3 },
+				{ name = "lazydev", group_index = 0 },
 			},
 		})
 		cmp.setup.cmdline(":", {
