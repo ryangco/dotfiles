@@ -121,7 +121,7 @@ return {
 			disable_inline_completion = true,
 		},
 	},
-	{
+	--[[ {
 		"jackMort/ChatGPT.nvim",
 		event = "VeryLazy",
 		keys = {
@@ -175,9 +175,9 @@ return {
 			"MunifTanjim/nui.nvim",
 			"nvim-lua/plenary.nvim",
 			"folke/trouble.nvim",
-			"nvim-telescope/telescope.nvim",
+			-- "nvim-telescope/telescope.nvim",
 		},
-	},
+	}, ]]
 	--[[ {
 		"robitx/gp.nvim",
 		event = "VeryLazy",

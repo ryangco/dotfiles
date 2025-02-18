@@ -1,4 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
+local map = vim.keymap.set
 
 autocmd("LspAttach", {
 	desc = "LSP options and keymaps",
@@ -10,6 +11,17 @@ autocmd("LspAttach", {
 
 		if not client then
 			return
+		end
+
+		map("i", "<C-h>", function()
+			vim.lsp.buf.signature_help()
+		end, { desc = "Help Guide" })
+
+		map("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = event.buf, desc = "[C]ode [A]ction" })
+
+		-- if client.supports_method("textDocument/rename") then
+		if client.server_capabilities.textDocumentSync.change then
+			map("n", "<f2>", vim.lsp.buf.rename, { noremap = true, buffer = event.buf, desc = "LSP: rename symbol" })
 		end
 
 		if client.server_capabilities.inlayHintProvider then
