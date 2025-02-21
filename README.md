@@ -48,7 +48,8 @@ Stow Server
 git clone git@github.com:ryangco/dotfiles.git
 cd dotfiles
 stow zshrc-server
-stow neovim
+mkdir ~/.config
+stow neovim -t ~/.config
 stow tmux-server
 stow s
 ```

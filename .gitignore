@@ -5,17 +5,3 @@ test.sh
 spell/
 
 lazy-lock.json
-
-neovim/.config/lazygit
-neovim/.config/lazydocker
-neovim/.config/thefuck
-neovim/.config/htop
-neovim/.config/go
-neovim/.config/turso
-neovim/.config/nextjs-nodejs
-neovim/.config/GitHub
-neovim/.config/create-next-app-nodejs
-neovim/.config/dlv
-neovim/.config/payload-nodejs
-neovim/.config/configstore
-neovim/.config/rclone
