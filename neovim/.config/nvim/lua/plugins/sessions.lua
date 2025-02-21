@@ -8,7 +8,7 @@ return {
 		{ "<leader>wa", "<cmd>SessionToggleAutoSave<CR>", desc = "Toggle autosave" },
 	},
 	dependencies = {
-		{ "nvim-telescope/telescope.nvim", enabled = false },
+		{ "nvim-telescope/telescope.nvim" },
 	},
 
 	---enables autocomplete for opts

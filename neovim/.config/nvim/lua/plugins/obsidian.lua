@@ -21,6 +21,29 @@ return {
 		keys = {
 			{ "<leader>on", "<cmd>ObsidianNew<cr>", desc = "New Obsidian note", mode = "n" },
 			{ "<leader>oo", "<cmd>ObsidianSearch<cr>", desc = "Search Obsidian notes", mode = "n" },
+			-- {
+			-- 	"<leader>oo",
+			-- 	function()
+			-- 		Snacks.picker.pick("grep", {
+			-- 			cwd = "~/Obsidian/",
+			-- 			actions = {
+			-- 				create_note = function(picker, item)
+			-- 					picker:close()
+			-- 					vim.cmd("ObsidianNew " .. picker.finder.filter.search)
+			-- 				end,
+			-- 			},
+			-- 			win = {
+			-- 				input = {
+			-- 					keys = {
+			-- 						["<c-x>"] = { "create_note", desc = "Create new note", mode = { "i", "n" } },
+			-- 					},
+			-- 				},
+			-- 			},
+			-- 		})
+			-- 	end,
+			-- 	desc = "Search Obsidian notes",
+			-- 	mode = "n",
+			-- },
 			{ "<leader>os", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick Switch", mode = "n" },
 			{ "<leader>ob", "<cmd>ObsidianBacklinks<cr>", desc = "Show location list of backlinks", mode = "n" },
 			{ "<leader>ot", "<cmd>ObsidianTemplate<cr>", desc = "Templates", mode = "n" },
@@ -59,7 +82,7 @@ return {
 				end
 			end,
 
-			note_id_func = function(title)
+			--[[ note_id_func = function(title)
 				-- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
 				-- In this case a note with the title 'My new note' will be given an ID that looks
 				-- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
@@ -74,7 +97,7 @@ return {
 					end
 				end
 				return tostring(os.time()) .. "-" .. suffix
-			end,
+			end, ]]
 
 			mappings = {
 				-- Toggle check-boxes.
