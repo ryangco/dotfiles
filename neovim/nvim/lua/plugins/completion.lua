@@ -1,4 +1,4 @@
-return {
+--[[ return {
 	"saghen/blink.cmp",
 	enabled = true,
 	version = "*",
@@ -232,9 +232,9 @@ return {
 		signature = { enabled = true, window = { border = "single" } },
 	},
 	opts_extend = { "sources.default" },
-}
+} ]]
 
---[[ return {
+return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
@@ -340,4 +340,4 @@ return {
 			},
 		})
 	end,
-} ]]
+}
