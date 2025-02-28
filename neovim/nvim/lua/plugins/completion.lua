@@ -1,4 +1,4 @@
---[[ return {
+return {
 	"saghen/blink.cmp",
 	enabled = true,
 	version = "*",
@@ -8,7 +8,14 @@
 			version = "*",
 			lazy = false,
 			-- event = "InsertEnter",
-			opts = { impersonate_nvim_cmp = true, enable_events = true, debug = true },
+			-- opts = { impersonate_nvim_cmp = true, enable_events = true, debug = true },
+			init = function()
+				require("blink.compat").setup({
+					impersonate_nvim_cmp = true,
+					enable_events = true,
+					debug = true,
+				})
+			end,
 		},
 		{
 			"L3MON4D3/LuaSnip",
@@ -52,7 +59,23 @@
 			["<C-l>"] = { "snippet_forward", "fallback" },
 			["<C-h>"] = { "snippet_backward", "fallback" },
 		},
-		snippets = { preset = "luasnip" },
+		snippets = {
+			preset = "luasnip",
+			-- This comes from the luasnip extra, if you don't add it, won't be able to jump forward or backward in luasnip snippets
+			-- https://www.lazyvim.org/extras/coding/luasnip#blinkcmp-optional
+			expand = function(snippet)
+				require("luasnip").lsp_expand(snippet)
+			end,
+			active = function(filter)
+				if filter and filter.direction then
+					return require("luasnip").jumpable(filter.direction)
+				end
+				return require("luasnip").in_snippet()
+			end,
+			jump = function(direction)
+				require("luasnip").jump(direction)
+			end,
+		},
 		sources = {
 			default = {
 				"digraphs",
@@ -104,16 +127,28 @@
 						disable_inline_completion = true,
 						disable_keymaps = true,
 					},
-					enabled = function()
-						return true
+					transform_items = function(_, items)
+						local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+						local kind_idx = #CompletionItemKind + 1
+						CompletionItemKind[kind_idx] = "Supermaven"
+						for _, item in ipairs(items) do
+							item.kind = kind_idx
+						end
+						return items
 					end,
 				},
 				codeium = {
 					name = "codeium",
 					module = "blink.compat.source",
 					score_offset = 20,
-					enabled = function()
-						return true
+					transform_items = function(_, items)
+						local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+						local kind_idx = #CompletionItemKind + 1
+						CompletionItemKind[kind_idx] = "Codeium"
+						for _, item in ipairs(items) do
+							item.kind = kind_idx
+						end
+						return items
 					end,
 				},
 				digraphs = {
@@ -158,12 +193,48 @@
 				},
 			},
 		},
+		appearance = {
+			kind_icons = {
+				Supermaven = "",
+				Codeium = "",
+				Text = "󰉿",
+				Method = "󰊕",
+				Function = "󰊕",
+				Constructor = "󰒓",
+
+				Field = "󰜢",
+				Variable = "󰆦",
+				Property = "󰖷",
+
+				Class = "󱡠",
+				Interface = "󱡠",
+				Struct = "󱡠",
+				Module = "󰅩",
+
+				Unit = "󰪚",
+				Value = "󰦨",
+				Enum = "󰦨",
+				EnumMember = "󰦨",
+
+				Keyword = "󰻾",
+				Constant = "󰏿",
+
+				Snippet = "󱄽",
+				Color = "󰏘",
+				File = "󰈔",
+				Reference = "󰬲",
+				Folder = "󰉋",
+				Event = "󱐋",
+				Operator = "󰪚",
+				TypeParameter = "󰬛",
+			},
+		},
 		signature = { enabled = true, window = { border = "single" } },
 	},
 	opts_extend = { "sources.default" },
-} ]]
+}
 
-return {
+--[[ return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
@@ -269,4 +340,4 @@ return {
 			},
 		})
 	end,
-}
+} ]]

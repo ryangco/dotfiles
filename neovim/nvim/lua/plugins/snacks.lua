@@ -7,7 +7,7 @@ return {
 		---@type snacks.Config
 		opts = {
 			-- scroll = { enabled = true },
-			images = { enabled = true },
+			image = { enabled = true },
 			bigfile = { enabled = true },
 			dashboard = { enabled = true },
 			gitbrowse = { enabled = true },
