@@ -55,14 +55,6 @@ return {
 					["@lsp.typemod.function.readonly"] = { bold = false },
 				}
 			end,
-			colors = {
-				palette = {
-					sumiInk3 = "#000000",
-					sumiInk4 = "#000000",
-					dragonBlack3 = "#000000",
-					dragonBlack4 = "#000000",
-				},
-			},
 		},
 	},
 	{
