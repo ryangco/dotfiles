@@ -314,6 +314,7 @@ return {
 				{ name = "digraphs" },
 				{ name = "dictionary", keyword_length = 3 },
 				{ name = "lazydev", group_index = 0 },
+				{ name = "render-markdown" },
 			},
 		})
 		cmp.setup.cmdline(":", {
