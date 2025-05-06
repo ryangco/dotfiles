@@ -24,10 +24,6 @@ autocmd("LspAttach", {
 			map("n", "<f2>", vim.lsp.buf.rename, { noremap = true, buffer = event.buf, desc = "LSP: rename symbol" })
 		end
 
-		if client.server_capabilities.inlayHintProvider then
-			vim.lsp.inlay_hint.enable(true)
-		end
-
 		-- if client.supports_method("textDocument/codeLens", event.buf) then
 		if client.server_capabilities.documentHighlightProvider then
 			autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {

@@ -48,9 +48,78 @@ return {
 			},
 		},
 		opts = {
+			inlayHints = { enable = false },
 			servers = {
-				lua_ls = {},
-				ts_ls = {},
+				lua_ls = {
+					on_init = function(client)
+						local path = client.workspace_folders[1].name
+						if
+							not vim.loop.fs_stat(path .. "/.luarc.json")
+							and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
+						then
+							client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
+								Lua = {
+									runtime = {
+										-- Tell the language server which version of Lua you're using
+										-- (most likely LuaJIT in the case of Neovim)
+										version = "LuaJIT",
+									},
+									-- Make the server aware of Neovim runtime files
+									workspace = {
+										checkThirdParty = false,
+										library = {
+											vim.env.VIMRUNTIME,
+											"${3rd}/luv/library",
+											-- "${3rd}/busted/library",
+										},
+										-- or pull in all of "runtimepath". NOTE: this is a lot slower
+										-- library = vim.api.nvim_get_runtime_file("", true)
+									},
+									completion = {
+										callSnippet = "Replace",
+									},
+									diagnostics = {
+										disable = { "missing-fields" },
+										globals = { "vim" },
+									},
+								},
+							})
+
+							client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+						end
+						return true
+					end,
+				},
+				ts_ls = {
+					settings = {
+						typescript = {
+							inlayHints = {
+								-- You can set this to 'all' or 'literals' to enable more hints
+								includeInlayParameuerNameHints = "literals", -- 'none' | 'literals' | 'all'
+								includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayVariableTypeHints = true,
+								includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayEnumMemberValueHints = true,
+							},
+						},
+						javascript = {
+							inlayHints = {
+								-- You can set this to 'all' or 'literals' to enable more hints
+								includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all'
+								includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+								includeInlayVariableTypeHints = true,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayEnumMemberValueHints = true,
+							},
+						},
+					},
+				},
 				volar = {},
 				tailwindcss = {},
 				cssls = {},
@@ -99,6 +168,7 @@ return {
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 			require("mason-lspconfig").setup({
+				automatic_installation = true,
 				ensure_installed = {
 					"volar",
 					"ts_ls",
@@ -118,79 +188,7 @@ return {
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						require("lspconfig")[server_name].setup(server)
 					end,
-					["ts_ls"] = function()
-						require("lspconfig").ts_ls.setup({
-							settings = {
-								typescript = {
-									inlayHints = {
-										-- You can set this to 'all' or 'literals' to enable more hints
-										includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all'
-										includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-										includeInlayFunctionParameterTypeHints = true,
-										includeInlayVariableTypeHints = true,
-										includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-										includeInlayPropertyDeclarationTypeHints = true,
-										includeInlayFunctionLikeReturnTypeHints = true,
-										includeInlayEnumMemberValueHints = true,
-									},
-								},
-								javascript = {
-									inlayHints = {
-										-- You can set this to 'all' or 'literals' to enable more hints
-										includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all'
-										includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-										includeInlayVariableTypeHints = true,
-										includeInlayFunctionParameterTypeHints = true,
-										includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-										includeInlayPropertyDeclarationTypeHints = true,
-										includeInlayFunctionLikeReturnTypeHints = true,
-										includeInlayEnumMemberValueHints = true,
-									},
-								},
-							},
-						})
-					end,
 				},
-			})
-			-- Servers that are not installed by mason.
-			require("lspconfig").lua_ls.setup({
-				on_init = function(client)
-					local path = client.workspace_folders[1].name
-					if
-						not vim.loop.fs_stat(path .. "/.luarc.json") and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
-					then
-						client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
-							Lua = {
-								runtime = {
-									-- Tell the language server which version of Lua you're using
-									-- (most likely LuaJIT in the case of Neovim)
-									version = "LuaJIT",
-								},
-								-- Make the server aware of Neovim runtime files
-								workspace = {
-									checkThirdParty = false,
-									library = {
-										vim.env.VIMRUNTIME,
-										"${3rd}/luv/library",
-										-- "${3rd}/busted/library",
-									},
-									-- or pull in all of "runtimepath". NOTE: this is a lot slower
-									-- library = vim.api.nvim_get_runtime_file("", true)
-								},
-								completion = {
-									callSnippet = "Replace",
-								},
-								diagnostics = {
-									disable = { "missing-fields" },
-									globals = { "vim" },
-								},
-							},
-						})
-
-						client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-					end
-					return true
-				end,
 			})
 		end,
 	},
