@@ -1,4 +1,4 @@
-vim.cmd("colorscheme kanagawa")
+-- vim.cmd("colorscheme kanagawa")
 local opt = vim.opt
 
 opt.expandtab = true

@@ -39,7 +39,7 @@ return {
 	},
 	{
 		"rebelot/kanagawa.nvim",
-		lazy = true,
+		-- lazy = true,
 		opts = {
 			commentStyle = { italic = false },
 			statementStyle = { bold = false },
@@ -70,21 +70,25 @@ return {
 				},
 			},
 		},
+		init = function()
+			vim.cmd("colorscheme catppuccin")
+		end,
 	},
 	{
 		"EdenEast/nightfox.nvim",
-		lazy = true,
-		config = function()
-			require("nightfox").setup({
-				palettes = {
-					nightfox = {
-						bg1 = "#000000",
-					},
-					carbonfox = {
-						bg1 = "#000000",
-					},
-				},
-			})
-		end,
+		opts = {
+			styles = { -- Style to be applied to different syntax groups
+				comments = "NONE", -- Value is any valid attr-list value `:help attr-list`
+				conditionals = "NONE",
+				constants = "NONE",
+				functions = "NONE",
+				keywords = "NONE",
+				numbers = "NONE",
+				operators = "NONE",
+				strings = "NONE",
+				types = "NONE",
+				variables = "NONE",
+			},
+		},
 	},
 }

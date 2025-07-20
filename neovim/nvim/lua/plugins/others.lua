@@ -84,4 +84,18 @@ return {
 			end, { desc = "[T]oggle [S]creen[K]ey" })
 		end,
 	},
+	{
+		"m4xshen/hardtime.nvim",
+		lazy = false,
+		dependencies = { "MunifTanjim/nui.nvim" },
+		opts = {
+			disabled_keys = {
+				["<Up>"] = false,
+				["<Down>"] = false,
+				["<Left>"] = false,
+				["<Right>"] = false,
+				-- ["<Space>"] = { "n", "x" },
+			},
+		},
+	},
 }

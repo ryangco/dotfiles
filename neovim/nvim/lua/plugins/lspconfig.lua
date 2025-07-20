@@ -48,7 +48,7 @@ return {
 			},
 		},
 		opts = {
-			inlayHints = { enable = false },
+			inlay_hints = { enable = false },
 			servers = {
 				lua_ls = {
 					on_init = function(client)
@@ -120,7 +120,8 @@ return {
 						},
 					},
 				},
-				volar = {},
+				-- volar = {},
+				-- vtsls = {},
 				tailwindcss = {},
 				cssls = {},
 				bashls = {},
@@ -170,7 +171,7 @@ return {
 			require("mason-lspconfig").setup({
 				automatic_installation = true,
 				ensure_installed = {
-					"volar",
+					-- "volar",
 					"ts_ls",
 					"tailwindcss",
 					"cssls",

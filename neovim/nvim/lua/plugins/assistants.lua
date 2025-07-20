@@ -1,3 +1,4 @@
+vim.cmd([[cab cc CodeCompanion]])
 return {
 	{
 		"olimorris/codecompanion.nvim",
@@ -15,9 +16,17 @@ return {
 				mode = { "n", "v" },
 			},
 			{
-				"<LocalLeader>a",
+				"<LocalLeader>aa",
 				"<cmd>CodeCompanionChat Toggle<cr>",
 				desc = "Code Companion Toggle Chat",
+				nowait = true,
+				remap = false,
+				mode = { "n", "v" },
+			},
+			{
+				"<LocalLeader>ac",
+				"<cmd>CodeCompanionActions<cr>",
+				desc = "Code Companion Actions",
 				nowait = true,
 				remap = false,
 				mode = { "n", "v" },
@@ -32,6 +41,11 @@ return {
 			},
 		},
 		opts = {
+			display = {
+				action_palette = {
+					provider = "snacks",
+				},
+			},
 			adapters = {
 				-- Gemini
 				gemini = function()
@@ -41,7 +55,7 @@ return {
 						},
 						schema = {
 							model = {
-								default = "gemini-2.5-pro-exp-03-25",
+								default = "gemini-2.5-flash-preview-04-17",
 							},
 						},
 					})
@@ -70,6 +84,84 @@ return {
 						},
 					})
 				end,
+				lmsDevstral = function()
+					return require("codecompanion.adapters").extend("openai_compatible", {
+						env = {
+							url = "http://127.0.0.1:1234", -- optional: default value is ollama url http://127.0.0.1:11434
+							api_key = "lm-studio", -- optional: if your endpoint is authenticated
+							chat_url = "/v1/chat/completions", -- optional: default value, override if different
+							models_endpoint = "/v1/models", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
+						},
+						schema = {
+							model = {
+								default = "mistralai/devstral-small-2505", -- define llm model to be used
+							},
+							temperature = {
+								order = 2,
+								mapping = "parameters",
+								type = "number",
+								optional = true,
+								default = 0.8,
+								desc = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or top_p but not both.",
+								validate = function(n)
+									return n >= 0 and n <= 2, "Must be between 0 and 2"
+								end,
+							},
+						},
+					})
+				end,
+				lmsQwenCoder = function()
+					return require("codecompanion.adapters").extend("openai_compatible", {
+						env = {
+							url = "http://127.0.0.1:1234", -- optional: default value is ollama url http://127.0.0.1:11434
+							api_key = "lm-studio", -- optional: if your endpoint is authenticated
+							chat_url = "/v1/chat/completions", -- optional: default value, override if different
+							models_endpoint = "/v1/models", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
+						},
+						schema = {
+							model = {
+								default = "qwen/qwen2.5-coder-14b", -- define llm model to be used
+							},
+							temperature = {
+								order = 2,
+								mapping = "parameters",
+								type = "number",
+								optional = true,
+								default = 0.8,
+								desc = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or top_p but not both.",
+								validate = function(n)
+									return n >= 0 and n <= 2, "Must be between 0 and 2"
+								end,
+							},
+						},
+					})
+				end,
+				lmsCoder = function()
+					return require("codecompanion.adapters").extend("openai_compatible", {
+						env = {
+							url = "http://127.0.0.1:1234", -- optional: default value is ollama url http://127.0.0.1:11434
+							api_key = "lm-studio", -- optional: if your endpoint is authenticated
+							chat_url = "/v1/chat/completions", -- optional: default value, override if different
+							models_endpoint = "/v1/models", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
+						},
+						schema = {
+							model = {
+								default = "deepseek-coder-v2-lite-instruct-mlx", -- define llm model to be used
+							},
+							temperature = {
+								order = 2,
+								mapping = "parameters",
+								type = "number",
+								optional = true,
+								default = 0.8,
+								desc = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or top_p but not both.",
+								validate = function(n)
+									return n >= 0 and n <= 2, "Must be between 0 and 2"
+								end,
+							},
+						},
+					})
+				end,
 			},
 			strategies = {
 				--[[ chat = {
@@ -84,12 +176,9 @@ return {
 						-- Add further custom keymaps here
 					},
 				}, ]]
-				chat = {
-					adapter = "gemini",
-				},
-				inline = {
-					adapter = "gemini",
-				},
+				chat = { adapter = "openai" },
+				inline = { adapter = "openai" },
+				cmd = { adapter = "openai" },
 			},
 		},
 		config = true,

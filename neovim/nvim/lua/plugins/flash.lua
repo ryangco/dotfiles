@@ -39,7 +39,9 @@ return {
 			},
 		},
 	},
-	opts = {},
+	opts = {
+		labels = "arstneiogmqwfpluybjkvhdcxz",
+	},
 	keys = {
 		{
 			"ss",
