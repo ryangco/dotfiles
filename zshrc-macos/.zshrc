@@ -37,3 +37,4 @@ export NVM_DIR="$HOME/.nvm"
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/gie/.lmstudio/bin"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
