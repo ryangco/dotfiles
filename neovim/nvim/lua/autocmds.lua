@@ -17,8 +17,6 @@ autocmd("LspAttach", {
 			vim.lsp.buf.signature_help()
 		end, { desc = "Help Guide" })
 
-		map("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = event.buf, desc = "[C]ode [A]ction" })
-
 		-- if client.supports_method("textDocument/rename") then
 		if client.server_capabilities.textDocumentSync.change then
 			map("n", "<f2>", vim.lsp.buf.rename, { noremap = true, buffer = event.buf, desc = "LSP: rename symbol" })

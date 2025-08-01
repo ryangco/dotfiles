@@ -70,3 +70,5 @@ set("n", "<M-,>", "<c-w>5<")
 set("n", "<M-.>", "<c-w>5>")
 set("n", "<M-t>", "<c-w>+")
 set("n", "<M-s>", "<c-w>-")
+
+set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
