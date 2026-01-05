@@ -65,11 +65,16 @@ return {
 			statuscolumn = { enabled = true },
 			words = { enabled = true },
 			toggle = { enabled = true },
+			---@type table<string, snacks.win.Config>
 			styles = {
 				notification = {
 					relative = "editor",
 					wo = { wrap = true },
 				},
+				notification_history = {
+					ft="markdown",
+					minimal=false,
+				}
 			},
 		},
 		keys = {
@@ -106,7 +111,7 @@ return {
 				function()
 					Snacks.notifier.show_history()
 				end,
-				desc = "Notification History",
+				desc = "Snacks Notification History",
 			},
 			{
 				"<leader>bd",
@@ -247,13 +252,6 @@ return {
 					Snacks.picker.command_history()
 				end,
 				desc = "Command History",
-			},
-			{
-				"<leader>n",
-				function()
-					Snacks.picker.notifications()
-				end,
-				desc = "Notification History",
 			},
 			{
 				"<leader>e",
@@ -591,12 +589,12 @@ return {
 					Snacks.toggle.diagnostics():map("<leader>ud")
 					Snacks.toggle.line_number():map("<leader>ul")
 					Snacks.toggle
-						.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
-						:map("<leader>uc")
+							.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+							:map("<leader>uc")
 					Snacks.toggle.treesitter():map("<leader>uT")
 					Snacks.toggle
-						.option("background", { off = "light", on = "dark", name = "Dark Background" })
-						:map("<leader>ub")
+							.option("background", { off = "light", on = "dark", name = "Dark Background" })
+							:map("<leader>ub")
 					Snacks.toggle.inlay_hints():map("<leader>uh")
 					Snacks.toggle.indent():map("<leader>ug")
 					Snacks.toggle.dim():map("<leader>uD")

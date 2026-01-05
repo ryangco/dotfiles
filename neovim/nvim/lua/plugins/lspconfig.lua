@@ -1,14 +1,5 @@
 return {
 	{
-		"luckasRanarison/tailwind-tools.nvim",
-		name = "tailwind-tools",
-		build = ":UpdateRemotePlugins",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-		},
-		opts = {},
-	},
-	{
 		"ray-x/go.nvim",
 		dependencies = {
 			"ray-x/guihua.lua",
@@ -54,8 +45,8 @@ return {
 					on_init = function(client)
 						local path = client.workspace_folders[1].name
 						if
-							not vim.loop.fs_stat(path .. "/.luarc.json")
-							and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
+								not vim.loop.fs_stat(path .. "/.luarc.json")
+								and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
 						then
 							client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
 								Lua = {
@@ -94,8 +85,7 @@ return {
 					settings = {
 						typescript = {
 							inlayHints = {
-								-- You can set this to 'all' or 'literals' to enable more hints
-								includeInlayParameuerNameHints = "literals", -- 'none' | 'literals' | 'all'
+								includeInlayParameterNameHints = 'literals',
 								includeInlayParameterNameHintsWhenArgumentMatchesName = true,
 								includeInlayFunctionParameterTypeHints = true,
 								includeInlayVariableTypeHints = true,
@@ -107,11 +97,10 @@ return {
 						},
 						javascript = {
 							inlayHints = {
-								-- You can set this to 'all' or 'literals' to enable more hints
-								includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all'
+								includeInlayParameterNameHints = 'literals',
 								includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-								includeInlayVariableTypeHints = true,
 								includeInlayFunctionParameterTypeHints = true,
+								includeInlayVariableTypeHints = true,
 								includeInlayVariableTypeHintsWhenTypeMatchesName = true,
 								includeInlayPropertyDeclarationTypeHints = true,
 								includeInlayFunctionLikeReturnTypeHints = true,
@@ -146,30 +135,35 @@ return {
 		},
 		config = function(_, opts)
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			local lspconfig = require("lspconfig")
+			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-			for server, config in pairs(opts.servers) do
-				-- blink
-				-- config.capabilities = vim.tbl_deep_extend(
-				-- 	"force",
-				-- 	capabilities,
-				-- 	require("blink.cmp").get_lsp_capabilities(config.capabilities)
-				-- )
+			vim.lsp.config("*", { capabilities = capabilities })
 
-				-- nvim-cmp
-				config.capabilities =
-					vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-				lspconfig[server].setup(config)
-			end
+
+			-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+			-- local lspconfig = require("lspconfig")
+			--
+			-- for server, config in pairs(opts.servers) do
+			-- 	-- blink
+			-- 	-- config.capabilities = vim.tbl_deep_extend(
+			-- 	-- 	"force",
+			-- 	-- 	capabilities,
+			-- 	-- 	require("blink.cmp").get_lsp_capabilities(config.capabilities)
+			-- 	-- )
+			--
+			-- 	-- nvim-cmp
+			-- 	config.capabilities =
+			-- 			vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+			-- 	vim.lsp.config([server],{ config })
+			-- end
 
 			require("mason").setup()
 			local ensure_installed = vim.tbl_keys(opts.servers or {})
 			vim.list_extend(ensure_installed, {
-				"stylua",
+				-- "stylua",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 			require("mason-lspconfig").setup({
-				automatic_installation = true,
 				ensure_installed = {
 					-- "volar",
 					"ts_ls",
@@ -179,17 +173,17 @@ return {
 					"jsonls",
 					-- 'markdownlint',
 				},
-				-- automatic_installation = { exclude = "lua_ls" },
-				handlers = {
-					function(server_name)
-						local server = opts.servers[server_name] or {}
-						-- This handles overriding only values explicitly passed
-						-- by the server configuration above. Useful when disabling
-						-- certain features of an LSP (for example, turning off formatting for ts_ls)
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
-					end,
-				},
+				automatic_installation = { exclude = "lua_ls" },
+				-- handlers = {
+				-- 	function(server_name)
+				-- 		local server = opts.servers[server_name] or {}
+				-- 		-- This handles overriding only values explicitly passed
+				-- 		-- by the server configuration above. Useful when disabling
+				-- 		-- certain features of an LSP (for example, turning off formatting for ts_ls)
+				-- 		server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+				-- 		require("lspconfig")[server_name].setup(server)
+				-- 	end,
+				-- },
 			})
 		end,
 	},

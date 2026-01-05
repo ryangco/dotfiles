@@ -1,8 +1,11 @@
 return { -- Highlight, edit, and navigate code
 	"nvim-treesitter/nvim-treesitter",
+	lazy = false,
+	branch = "main",
+	-- main = 'nvim-treesitter.configs', -- Sets main module to use for opts
 	build = ":TSUpdate",
 	dependencies = {
-		"nvim-treesitter/nvim-treesitter-textobjects",
+		-- "nvim-treesitter/nvim-treesitter-textobjects",
 	},
 	opts = {
 		ensure_installed = {
@@ -98,8 +101,22 @@ return { -- Highlight, edit, and navigate code
 			},
 		},
 	},
-	config = function(_, opts)
-		require("nvim-treesitter.install").prefer_git = true
-		require("nvim-treesitter.configs").setup(opts)
+	-- config = function(_, opts)
+	-- 	require("nvim-treesitter.install").prefer_git = true
+	-- 	require("nvim-treesitter.configs").setup(opts)
+	-- end,
+	config = function()
+		local ts = require("nvim-treesitter")
+		local parsers = { "lua", "vim", "vimdoc", "bash", "markdown", "rust" }
+
+		for _, parser in ipairs(parsers) do
+			pcall(ts.install, parser)
+		end
+
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function()
+				pcall(vim.treesitter.start)
+			end,
+		})
 	end,
 }

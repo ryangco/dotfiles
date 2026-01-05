@@ -24,7 +24,7 @@ return {
 									exclude = {
 										function(win)
 											return vim.bo[vim.api.nvim_win_get_buf(win)].filetype
-												~= "snacks_picker_list"
+													~= "snacks_picker_list"
 										end,
 									},
 								},
@@ -43,45 +43,10 @@ return {
 		labels = "arstneiogmqwfpluybjkvhdcxz",
 	},
 	keys = {
-		{
-			"ss",
-			mode = { "n", "x", "o" },
-			function()
-				require("flash").jump()
-			end,
-			desc = "Flash",
-		},
-		{
-			"sS",
-			mode = { "n", "x", "o" },
-			function()
-				require("flash").treesitter()
-			end,
-			desc = "Flash Treesitter",
-		},
-		{
-			"r",
-			mode = "o",
-			function()
-				require("flash").remote()
-			end,
-			desc = "Remote Flash",
-		},
-		{
-			"R",
-			mode = { "o", "x" },
-			function()
-				require("flash").treesitter_search()
-			end,
-			desc = "Treesitter Search",
-		},
-		{
-			"<leader>l/",
-			mode = { "n" },
-			function()
-				require("flash").toggle()
-			end,
-			desc = "Togg[L]e Flash [/]Search",
-		},
+		{ "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+		{ "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+		{ "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+		{ "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+		{ "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
 	},
 }

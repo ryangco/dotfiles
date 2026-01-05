@@ -79,9 +79,9 @@ return {
 		version = "*",
 		opts = { disable = { buftypes = { "terminal" } } },
 		init = function()
-			vim.keymap.set("n", "<leader>tsk", function()
+			vim.keymap.set("n", "<leader>uk", function()
 				vim.cmd("Screenkey toggle")
-			end, { desc = "[T]oggle [S]creen[K]ey" })
+			end, { desc = "Toggle Screen[K]ey" })
 		end,
 	},
 	{
@@ -89,13 +89,50 @@ return {
 		lazy = false,
 		dependencies = { "MunifTanjim/nui.nvim" },
 		opts = {
+			restrict_mode = "hint",
+			restricted_keys = {
+				["<Up>"] = { "n", "x" },
+				["<Down>"] = { "n", "x" },
+				["<Left>"] = { "n", "x" },
+				["<Right>"] = { "n", "x" },
+				h = false,
+				j = false,
+				k = false,
+				l = false,
+			},
 			disabled_keys = {
 				["<Up>"] = false,
 				["<Down>"] = false,
 				["<Left>"] = false,
 				["<Right>"] = false,
-				-- ["<Space>"] = { "n", "x" },
 			},
-		},
+			-- hints = {
+			-- 	["<Up>"] = {
+			-- 		message = function()
+			-- 			return "Use [count]k or CTRL-U to scroll up."
+			-- 		end,
+			-- 		length = 2,
+			-- 	},
+			-- 	["<Down>"] = {
+			-- 		message = function()
+			-- 			return "Use [count]j or CTRL-D to scroll down."
+			-- 		end,
+			-- 		length = 2,
+			-- 	},
+			-- 	["<Left>"] = {
+			-- 		message = function()
+			-- 			return "Use b/B/ge/gE/F/T/0 to move left."
+			-- 		end,
+			-- 		length = 2,
+			-- 	},
+			-- 	["<Right>"] = {
+			-- 		message = function()
+			-- 			return "Use w/W/e/E/f/t/$ to move right."
+			-- 		end,
+			-- 		length = 2,
+			-- 	},
+			-- }
+		}
+
 	},
 }

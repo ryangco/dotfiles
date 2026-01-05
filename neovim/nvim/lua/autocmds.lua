@@ -5,6 +5,7 @@ autocmd("LspAttach", {
 	desc = "LSP options and keymaps",
 	group = vim.api.nvim_create_augroup("UserLspHighlight", { clear = true }),
 	callback = function(event)
+		vim.lsp.inlay_hint.enable(false, { bufnr = event.buf })
 		-- local id = vim.tbl_get(event, "data", "client_id")
 		local id = event.data.client_id
 		local client = id and vim.lsp.get_client_by_id(id)
