@@ -47,6 +47,19 @@ return {
 				},
 			},
 			adapters = {
+				-- Codex
+				acp = {
+					codex = function()
+						return require("codecompanion.adapters").extend("codex", {
+							defaults = {
+								auth_method = "openai-api-key", -- "openai-api-key"|"codex-api-key"|"chatgpt"
+							},
+							env = {
+								api_key = "cmd:cat ~/secrets/OAI_API_KEY.txt",
+							},
+						})
+					end,
+				},
 				-- Gemini
 				gemini = function()
 					return require("codecompanion.adapters").extend("gemini", {
@@ -68,7 +81,7 @@ return {
 						},
 						schema = {
 							model = {
-								default = "gpt-4o",
+								default = "gpt-5.1",
 							},
 						},
 					})
@@ -94,7 +107,7 @@ return {
 						},
 						schema = {
 							model = {
-								default = "mistralai/devstral-small-2505", -- define llm model to be used
+								default = "mistralai/devstral-small-2-2512", -- define llm model to be used
 							},
 							temperature = {
 								order = 2,
@@ -110,7 +123,7 @@ return {
 						},
 					})
 				end,
-				lmsQwenCoder = function()
+				lmsQwen = function()
 					return require("codecompanion.adapters").extend("openai_compatible", {
 						env = {
 							url = "http://127.0.0.1:1234", -- optional: default value is ollama url http://127.0.0.1:11434
@@ -120,33 +133,7 @@ return {
 						},
 						schema = {
 							model = {
-								default = "qwen/qwen2.5-coder-14b", -- define llm model to be used
-							},
-							temperature = {
-								order = 2,
-								mapping = "parameters",
-								type = "number",
-								optional = true,
-								default = 0.8,
-								desc = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or top_p but not both.",
-								validate = function(n)
-									return n >= 0 and n <= 2, "Must be between 0 and 2"
-								end,
-							},
-						},
-					})
-				end,
-				lmsCoder = function()
-					return require("codecompanion.adapters").extend("openai_compatible", {
-						env = {
-							url = "http://127.0.0.1:1234", -- optional: default value is ollama url http://127.0.0.1:11434
-							api_key = "lm-studio", -- optional: if your endpoint is authenticated
-							chat_url = "/v1/chat/completions", -- optional: default value, override if different
-							models_endpoint = "/v1/models", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
-						},
-						schema = {
-							model = {
-								default = "deepseek-coder-v2-lite-instruct-mlx", -- define llm model to be used
+								default = "qwen/qwen3-vl-8b", -- define llm model to be used
 							},
 							temperature = {
 								order = 2,
@@ -163,23 +150,23 @@ return {
 					})
 				end,
 			},
-			strategies = {
-				--[[ chat = {
-					adapter = "ollama",
-					keymaps = {
-						send = {
-							modes = { n = "<C-g>", i = "<C-g>" },
-						},
-						close = {
-							modes = { n = "<C-c>", i = "<C-c>" },
-						},
-						-- Add further custom keymaps here
-					},
-				}, ]]
-				chat = { adapter = "openai" },
-				inline = { adapter = "openai" },
-				cmd = { adapter = "openai" },
-			},
+			-- strategies = {
+			-- 	--[[ chat = {
+			-- 		adapter = "ollama",
+			-- 		keymaps = {
+			-- 			send = {
+			-- 				modes = { n = "<C-g>", i = "<C-g>" },
+			-- 			},
+			-- 			close = {
+			-- 				modes = { n = "<C-c>", i = "<C-c>" },
+			-- 			},
+			-- 			-- Add further custom keymaps here
+			-- 		},
+			-- 	}, ]]
+			-- 	chat = { adapter = "openai" },
+			-- 	inline = { adapter = "openai" },
+			-- 	cmd = { adapter = "openai" },
+			-- },
 		},
 		config = true,
 	},

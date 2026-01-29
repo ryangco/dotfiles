@@ -2,6 +2,7 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 config.color_scheme = "Kanagawa (Gogh)"
+config.colors = { background = "#000000" }
 
 -- local function scheme_for_appearance(appearance)
 -- 	if appearance:find("Dark") then

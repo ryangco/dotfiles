@@ -1,0 +1,152 @@
+(defcfg
+  process-unmapped-keys   yes
+  concurrent-tap-hold     yes
+  allow-hardware-repeat   no
+  macos-dev-names-include (
+    "Apple Internal Keyboard / Trackpad"
+  )
+)
+
+;; global variables
+(defvar
+  tap-timeout   200
+  hold-timeout  200
+  tt $tap-timeout
+  ht $hold-timeout
+)
+
+(defalias
+  ;; Home row mods - left hand
+  a (tap-hold $tt $ht a lmet)
+  r (tap-hold $tt $ht r lalt)
+  s (tap-hold $tt $ht s lctl)
+  t (tap-hold $tt $ht t lsft)
+  
+  ;; Home row mods - right hand
+  n (tap-hold $tt $ht n rsft)
+  e (tap-hold $tt $ht e rctl)
+  i (tap-hold $tt $ht i ralt)
+  o (tap-hold $tt $ht o rmet)
+  
+  ;; Bottom row mods
+  z (tap-hold $tt $ht z (layer-while-held U_BUTTON))
+  x (tap-hold $tt $ht x ralt)
+  . (tap-hold $tt $ht . ralt)
+  / (tap-hold $tt $ht / (layer-while-held U_BUTTON))
+  
+  ;; Thumb keys
+  escc (tap-hold $tt $ht esc (layer-while-held U_FUN))
+  spcc (tap-hold $tt $ht spc (layer-while-held U_NUM))
+  tabb (tap-hold $tt $ht tab (layer-while-held U_SYM))
+  entt (tap-hold $tt $ht ret (layer-while-held U_MOUSE))
+  bspcc (tap-hold $tt $ht bspc (layer-while-held U_NAV))
+  dell (tap-hold $tt $ht del (layer-while-held U_MEDIA))
+  
+  ;; Utility keys
+  kil C-A-S-M-f1
+  br C-A-S-M-b
+  tr C-A-S-M-t
+  hyper C-A-S-M-c
+  cHome M-left
+  cEnd M-right
+  
+  ;; Button layer shortcuts
+  uz M-z
+  ux M-x
+  uc M-c
+  uv M-v
+  suz S-M-z
+  
+  ;; Layer switches (tap once for XX, tap twice quickly to switch layer)
+  swBase (tap-dance 200 (XX (layer-switch U_BASE)))
+  swExtra (tap-dance 200 (XX (layer-switch U_EXTRA)))
+  swTap (tap-dance 200 (XX (layer-switch U_TAP)))
+  swNav (tap-dance 200 (XX (layer-switch U_NAV)))
+  swNum (tap-dance 200 (XX (layer-switch U_NUM)))
+  swMouse (tap-dance 200 (XX (layer-switch U_MOUSE)))
+  swSym (tap-dance 200 (XX (layer-switch U_SYM)))
+  swMedia (tap-dance 200 (XX (layer-switch U_MEDIA)))
+  swFun (tap-dance 200 (XX (layer-switch U_FUN)))
+  
+  ;; Special modifiers - tap once for modifier, twice for combo
+  sMet (tap-dance 200 (rsft (macro M-spc)))
+  aF12 (tap-dance 200 (ralt f12))
+  laF12 (tap-dance 200 (lalt f12))
+)
+
+(defsrc
+  esc     w     e     r     t     y     u     i     o     p     [
+  lctrl   a     s     d     f     g     j     k     l     ;     '     ret
+  lsft    z     x     c     v     b     n     m     ,     .     /     ro
+  lmet    eisu    spc   kana    rmet  fn
+)
+
+(deflayer U_BASE
+  @kil    q     w     f     p     b     j     l     u     y     '
+  @hyper  @a    @r    @s    @t    g     m     @n    @e    @i    @o    @hyper
+  @z      @x    c     d     v     @br   @tr   k     h     ,     @.    @/
+  @escc   @spcc @tabb @entt @bspcc @dell
+)
+
+(deflayer U_EXTRA
+  @kil    q     w     e     r     t     y     u     i     o     p
+  @hyper  @a    (tap-hold $tt $ht s lalt) (tap-hold $tt $ht d lctl) (tap-hold $tt $ht f lsft) g     h     (tap-hold $tt $ht j rsft) (tap-hold $tt $ht k rctl) (tap-hold $tt $ht l ralt) (tap-hold $tt $ht ' rmet) @hyper
+  @z      @x    c     v     XX    @br   @tr   b     n     m     ,     @/
+  (tap-hold $tt $ht del (layer-while-held U_FUN)) (tap-hold $tt $ht bspc (layer-while-held U_NUM)) (tap-hold $tt $ht ent (layer-while-held U_SYM)) (tap-hold $tt $ht tab (layer-while-held U_MOUSE)) (tap-hold $tt $ht spc (layer-while-held U_NAV)) (tap-hold $tt $ht esc (layer-while-held U_MEDIA))
+)
+
+(deflayer U_TAP
+  @kil    q     w     e     r     t     y     u     i     o     p
+  @hyper  a     s     d     f     g     h     j     k     l     '     @hyper
+  z       x     c     v     XX    @br   @tr   b     n     m     ,     /
+  del     bspc  ret   tab   spc   esc
+)
+
+(deflayer U_BUTTON
+  @kil    @uz   @ux   @uc   @uv   @suz  @suz  @uv   @uc   @ux   @uz
+  @hyper  lmet  lalt  lctl  lsft  XX    XX    rsft  rctl  ralt  rmet  @hyper
+  @uz     @ux   @uc   @uv   @suz  @br   @tr   @suz  @uv   @uc   @ux   @uz
+  (macro kp* kp5) (macro kp/ kp5) (macro kp- kp5) (macro kp- kp5) (macro kp/ kp5) (macro kp* kp5)
+)
+
+(deflayer U_NAV
+  @kil    pgup  @cHome up   @cEnd ins   XX    @swBase @swExtra @swTap XX
+  @hyper  pgdn  left  down  right caps  @aF12 @sMet rctl  ralt  rmet  @hyper
+  @uz     @ux   @uc   @uv   @suz  @br   @tr   XX    @swNav @swNum ralt  XX
+  esc     spc   tab   XX    XX    XX
+)
+
+(deflayer U_MOUSE
+  @kil    XX    XX    kp8   XX    XX    XX    @swBase @swExtra @swTap XX
+  @hyper  XX    kp4   kp2   kp6   XX    XX    rsft  rctl  ralt  rmet  @hyper
+  @uz     @ux   @uc   @uv   @suz  @br   @tr   XX    @swMouse @swSym ralt  XX
+  (macro kp* kp5) mlft mrgt XX    XX    XX
+)
+
+(deflayer U_MEDIA
+  @kil    blup    brdn   volu  bru   XX    XX    @swBase @swExtra @swTap XX
+  @hyper  bldn    prev  vold  next  XX    XX    rsft  rctl  ralt  rmet  @hyper
+  XX      XX    XX    XX    XX    @br   @tr   XX    @swMedia @swFun ralt  XX
+  mute    MediaPlayPause    XX  XX    XX    XX
+)
+
+(deflayer U_NUM
+  @kil    XX    @swTap @swExtra @swBase XX    [     7     8     9     ]
+  @hyper  lmet  lalt  lctl  @sMet @laF12 =     4     5     6     ;     @hyper
+  XX      ralt  @swNav @swNum XX    @br   @tr   \     1     2     3     grv
+  XX      XX    XX    -     0     .
+)
+
+(deflayer U_SYM
+  @kil    XX    @swTap @swExtra @swBase XX    S-[   S-7   S-8   S-9   S-]
+  @hyper  lmet  lalt  lctl  lsft  XX    S-=   S-4   S-5   S-6   S-;   @hyper
+  XX      ralt  @swMouse @swSym XX    @br   @tr   S-\   S-1   S-2   S-3   S-grv
+  XX      XX    XX    S--   S-9   S-0
+)
+
+(deflayer U_FUN
+  @kil    XX    @swTap @swExtra @swBase XX    ssrq  f7    f8    f9    f12
+  @hyper  lmet  lalt  lctl  lsft  XX    slck  f4    f5    f6    f11   @hyper
+  XX      ralt  @swMedia @swFun XX    @br   @tr   pause f1    f2    f3    f10
+  XX      XX    XX    ret   bspc  del
+)
