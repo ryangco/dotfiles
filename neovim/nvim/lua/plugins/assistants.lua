@@ -55,7 +55,7 @@ return {
 				anthropic = function()
 					return require("codecompanion.adapters").extend("anthropic", {
 						env = {
-							api_key = "cmd:cat ~/secrets/ANT_API_KEY.txt --no-newline",
+							api_key = "cmd:cat ~/secrets/ANT_API_KEY.txt",
 						},
 						schema = {
 							model = {
