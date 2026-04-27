@@ -42,17 +42,36 @@ return {
 		},
 		opts = {
 			interactions = {
-				chat = { adapter = "anthropic", model = "claude-sonnet-4.6" },
-				inline = { adapter = "anthropic", model = "claude-sonnet-4.6" },
-				cmd = { adapter = "anthropic", model = "claude-sonnet-4.6" },
+				chat = { adapter = "myAnthropic", model = "claude-sonnet-4-6" },
+				inline = { adapter = "myAnthropic", model = "claude-sonnet-4-6" },
+				cmd = { adapter = "myAnthropic", model = "claude-sonnet-4-6" },
 			},
 			display = {
 				action_palette = {
 					provider = "snacks",
 				},
 			},
+			strategies = {
+				chat = { adapter = "myAnthropic", model = "claude-sonnet-4-6" },
+				inline = { adapter = "myAnthropic", model = "claude-sonnet-4-6" },
+				cmd = { adapter = "myAnthropic", model = "claude-sonnet-4-6" },
+			},
 			adapters = {
-				anthropic = function()
+				http = {
+					myAnthropic = function()
+						return require("codecompanion.adapters").extend("anthropic", {
+							env = {
+								api_key = "cmd:cat ~/secrets/ANT_API_KEY.txt",
+							},
+							schema = {
+								model = {
+									default = "claude-sonnet-4-6",
+								},
+							},
+						})
+					end,
+				},
+				myAnthropic = function()
 					return require("codecompanion.adapters").extend("anthropic", {
 						env = {
 							api_key = "cmd:cat ~/secrets/ANT_API_KEY.txt",
@@ -166,11 +185,6 @@ return {
 						},
 					})
 				end,
-			},
-			strategies = {
-				chat = { adapter = "anthropic", model = "claude-sonnet-4-6" },
-				inline = { adapter = "anthropic", model = "claude-sonnet-4-6" },
-				cmd = { adapter = "anthropic", model = "claude-sonnet-4-6" },
 			},
 			-- strategies = {
 			-- 	--[[ chat = {
