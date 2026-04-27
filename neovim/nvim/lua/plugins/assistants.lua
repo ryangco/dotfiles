@@ -41,12 +41,29 @@ return {
 			},
 		},
 		opts = {
+			interactions = {
+				chat = { adapter = "anthropic", model = "claude-sonnet-4.6" },
+				inline = { adapter = "anthropic", model = "claude-sonnet-4.6" },
+				cmd = { adapter = "anthropic", model = "claude-sonnet-4.6" },
+			},
 			display = {
 				action_palette = {
 					provider = "snacks",
 				},
 			},
 			adapters = {
+				anthropic = function()
+					return require("codecompanion.adapters").extend("anthropic", {
+						env = {
+							api_key = "cmd:cat ~/secrets/ANT_API_KEY.txt --no-newline",
+						},
+						schema = {
+							model = {
+								default = "claude-sonnet-4-6",
+							},
+						},
+					})
+				end,
 				-- Codex
 				acp = {
 					codex = function()
@@ -149,6 +166,11 @@ return {
 						},
 					})
 				end,
+			},
+			strategies = {
+				chat = { adapter = "anthropic", model = "claude-sonnet-4-6" },
+				inline = { adapter = "anthropic", model = "claude-sonnet-4-6" },
+				cmd = { adapter = "anthropic", model = "claude-sonnet-4-6" },
 			},
 			-- strategies = {
 			-- 	--[[ chat = {
