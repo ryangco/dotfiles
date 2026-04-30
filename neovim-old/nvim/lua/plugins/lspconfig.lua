@@ -45,8 +45,8 @@ return {
 					on_init = function(client)
 						local path = client.workspace_folders[1].name
 						if
-								not vim.loop.fs_stat(path .. "/.luarc.json")
-								and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
+							not vim.loop.fs_stat(path .. "/.luarc.json")
+							and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
 						then
 							client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
 								Lua = {
@@ -85,7 +85,7 @@ return {
 					settings = {
 						typescript = {
 							inlayHints = {
-								includeInlayParameterNameHints = 'literals',
+								includeInlayParameterNameHints = "literals",
 								includeInlayParameterNameHintsWhenArgumentMatchesName = true,
 								includeInlayFunctionParameterTypeHints = true,
 								includeInlayVariableTypeHints = true,
@@ -97,7 +97,7 @@ return {
 						},
 						javascript = {
 							inlayHints = {
-								includeInlayParameterNameHints = 'literals',
+								includeInlayParameterNameHints = "literals",
 								includeInlayParameterNameHintsWhenArgumentMatchesName = true,
 								includeInlayFunctionParameterTypeHints = true,
 								includeInlayVariableTypeHints = true,
@@ -139,7 +139,6 @@ return {
 
 			vim.lsp.config("*", { capabilities = capabilities })
 
-
 			-- local capabilities = vim.lsp.protocol.make_client_capabilities()
 			-- local lspconfig = require("lspconfig")
 			--
@@ -157,7 +156,7 @@ return {
 			-- 	vim.lsp.config([server],{ config })
 			-- end
 
-			require("mason").setup()
+			require("mason-lsp").setup()
 			local ensure_installed = vim.tbl_keys(opts.servers or {})
 			vim.list_extend(ensure_installed, {
 				-- "stylua",

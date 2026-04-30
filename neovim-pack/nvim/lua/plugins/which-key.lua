@@ -1,0 +1,300 @@
+local wk = require("which-key")
+
+wk.setup({})
+
+vim.keymap.set("n", "<leader>?", function()
+    wk.show({ global = false })
+end, { desc = "Buffer Local Keymaps (which-key)" })
+
+wk.add({
+    { "<leader>h", desc = "Git [H]unk", mode = "v" },
+})
+
+-- return {
+-- 	"folke/which-key.nvim",
+-- 	event = "VimEnter",
+-- 	config = function()
+-- 		local wk = require("which-key")
+-- 		-- require("which-key").setup()
+--
+-- 		-- Document existing key chains
+-- 		--[[ wk.add({
+-- 			-- ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
+-- 			{ "<leader>d", group = "[D]ocument" },
+-- 			{ "<leader>d_", hidden = true },
+-- 			{ "<leader>h", group = "Git [H]unk" },
+-- 			{ "<leader>h_", hidden = true },
+-- 			{ "<leader>r", group = "[R]ename" },
+-- 			{ "<leader>r_", hidden = true },
+-- 			{ "<leader>s", group = "[S]earch" },
+-- 			{ "<leader>s_", hidden = true },
+-- 			{ "<leader>t", group = "[T]oggle" },
+-- 			{ "<leader>t_", hidden = true },
+-- 			{ "<leader>w", group = "[W]orkspace" },
+-- 			{ "<leader>w_", hidden = true },
+-- 		})
+-- 		-- visual mode
+-- 		wk.add({
+-- 			"<leader>h",
+-- 			desc = "Git [H]unk",
+-- 			mode = "v",
+-- 		}) ]]
+--
+-- 		-- NOTE: GP.nvim
+-- 		-- VISUAL mode mappings
+-- 		-- s, x, v modes are handled the same way by which_key
+-- 		--[[ wk.add({
+-- 			{
+-- 				mode = { "v" },
+-- 				{
+-- 					"<leader>g<C-t>",
+-- 					":<C-u>'<,'>GpChatNew tabnew<cr>",
+-- 					desc = "Visual Chat New tabnew",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{
+-- 					"<leader>g<C-v>",
+-- 					":<C-u>'<,'>GpChatNew vsplit<cr>",
+-- 					desc = "Visual Chat New vsplit",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{
+-- 					"<leader>g<C-x>",
+-- 					":<C-u>'<,'>GpChatNew split<cr>",
+-- 					desc = "Visual Chat New split",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{
+-- 					"<leader>ga",
+-- 					":<C-u>'<,'>GpAppend<cr>",
+-- 					desc = "Visual Append (after)",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{
+-- 					"<leader>gb",
+-- 					":<C-u>'<,'>GpPrepend<cr>",
+-- 					desc = "Visual Prepend (before)",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{ "<leader>gc", ":<C-u>'<,'>GpChatNew<cr>", desc = "Visual Chat New", nowait = true, remap = false },
+-- 				{ "<leader>gg", group = "generate into new ..", nowait = true, remap = false },
+-- 				{ "<leader>gge", ":<C-u>'<,'>GpEnew<cr>", desc = "Visual GpEnew", nowait = true, remap = false },
+-- 				{ "<leader>ggn", ":<C-u>'<,'>GpNew<cr>", desc = "Visual GpNew", nowait = true, remap = false },
+-- 				{ "<leader>ggp", ":<C-u>'<,'>GpPopup<cr>", desc = "Visual Popup", nowait = true, remap = false },
+-- 				{ "<leader>ggt", ":<C-u>'<,'>GpTabnew<cr>", desc = "Visual GpTabnew", nowait = true, remap = false },
+-- 				{ "<leader>ggv", ":<C-u>'<,'>GpVnew<cr>", desc = "Visual GpVnew", nowait = true, remap = false },
+-- 				{ "<leader>gh", group = "Custom [H]ooks", nowait = true, remap = false },
+-- 				{ "<leader>ghe", ":<C-u>'<,'>GpExplain<cr>", desc = "Visual Explain", nowait = true, remap = false },
+-- 				{
+-- 					"<leader>ghr",
+-- 					":<C-u>'<,'>GpCodeReview<cr>",
+-- 					desc = "Visual Code Review",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{
+-- 					"<leader>ghu",
+-- 					":<C-u>'<,'>GpUnitTests<cr>",
+-- 					desc = "Visual Unit Tests",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{
+-- 					"<leader>gi",
+-- 					":<C-u>'<,'>GpImplement<cr>",
+-- 					desc = "Implement selection",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{ "<leader>gn", "<cmd>GpNextAgent<cr>", desc = "Next Agent", nowait = true, remap = false },
+-- 				{
+-- 					"<leader>gp",
+-- 					":<C-u>'<,'>GpChatPaste<cr>",
+-- 					desc = "Visual Chat Paste",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{ "<leader>gr", ":<C-u>'<,'>GpRewrite<cr>", desc = "Visual Rewrite", nowait = true, remap = false },
+-- 				{ "<leader>gs", "<cmd>GpStop<cr>", desc = "GpStop", nowait = true, remap = false },
+-- 				{
+-- 					"<leader>gt",
+-- 					":<C-u>'<,'>GpChatToggle<cr>",
+-- 					desc = "Visual Toggle Chat",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{ "<leader>gw", group = "Whisper", nowait = true, remap = false },
+-- 				{
+-- 					"<leader>gwa",
+-- 					":<C-u>'<,'>GpWhisperAppend<cr>",
+-- 					desc = "Whisper Append (after)",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{
+-- 					"<leader>gwb",
+-- 					":<C-u>'<,'>GpWhisperPrepend<cr>",
+-- 					desc = "Whisper Prepend (before)",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{ "<leader>gwe", ":<C-u>'<,'>GpWhisperEnew<cr>", desc = "Whisper Enew", nowait = true, remap = false },
+-- 				{ "<leader>gwn", ":<C-u>'<,'>GpWhisperNew<cr>", desc = "Whisper New", nowait = true, remap = false },
+-- 				{
+-- 					"<leader>gwp",
+-- 					":<C-u>'<,'>GpWhisperPopup<cr>",
+-- 					desc = "Whisper Popup",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{
+-- 					"<leader>gwr",
+-- 					":<C-u>'<,'>GpWhisperRewrite<cr>",
+-- 					desc = "Whisper Rewrite",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{
+-- 					"<leader>gwt",
+-- 					":<C-u>'<,'>GpWhisperTabnew<cr>",
+-- 					desc = "Whisper Tabnew",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{ "<leader>gwv", ":<C-u>'<,'>GpWhisperVnew<cr>", desc = "Whisper Vnew", nowait = true, remap = false },
+-- 				{ "<leader>gww", ":<C-u>'<,'>GpWhisper<cr>", desc = "Whisper", nowait = true, remap = false },
+-- 				{ "<leader>gx", ":<C-u>'<,'>GpContext<cr>", desc = "Visual GpContext", nowait = true, remap = false },
+-- 			},
+-- 		})
+--
+-- 		-- NORMAL mode mappings
+-- 		wk.add({
+-- 			{ "<leader>g<C-t>", "<cmd>GpChatNew tabnew<cr>", desc = "New Chat tabnew", nowait = true, remap = false },
+-- 			{ "<leader>g<C-v>", "<cmd>GpChatNew vsplit<cr>", desc = "New Chat vsplit", nowait = true, remap = false },
+-- 			{ "<leader>g<C-x>", "<cmd>GpChatNew split<cr>", desc = "New Chat split", nowait = true, remap = false },
+-- 			{ "<leader>ga", "<cmd>GpAppend<cr>", desc = "Append (after)", nowait = true, remap = false },
+-- 			{ "<leader>gb", "<cmd>GpPrepend<cr>", desc = "Prepend (before)", nowait = true, remap = false },
+-- 			{ "<leader>gc", "<cmd>GpChatNew<cr>", desc = "New Chat", nowait = true, remap = false },
+-- 			{ "<leader>gf", "<cmd>GpChatFinder<cr>", desc = "Chat Finder", nowait = true, remap = false },
+-- 			{ "<leader>gg", group = "generate into new ..", nowait = true, remap = false },
+-- 			{ "<leader>gge", "<cmd>GpEnew<cr>", desc = "GpEnew", nowait = true, remap = false },
+-- 			{ "<leader>ggn", "<cmd>GpNew<cr>", desc = "GpNew", nowait = true, remap = false },
+-- 			{ "<leader>ggp", "<cmd>GpPopup<cr>", desc = "Popup", nowait = true, remap = false },
+-- 			{ "<leader>ggt", "<cmd>GpTabnew<cr>", desc = "GpTabnew", nowait = true, remap = false },
+-- 			{ "<leader>ggv", "<cmd>GpVnew<cr>", desc = "GpVnew", nowait = true, remap = false },
+-- 			{ "<leader>gh", group = "Custom [H]ooks", nowait = true, remap = false },
+-- 			{ "<leader>ghe", "<cmd>GpExplain<cr>", desc = "Explain", nowait = true, remap = false },
+-- 			{ "<leader>ghr", "<cmd>GpCodeReview<cr>", desc = "Code Review", nowait = true, remap = false },
+-- 			{ "<leader>ghu", "<cmd>GpUnitTests<cr>", desc = "Unit Tests", nowait = true, remap = false },
+-- 			{
+-- 				"<leader>ghw",
+-- 				"<cmd>GpBufferChatNew<cr>",
+-- 				desc = "[W]hole Buffer Context",
+-- 				nowait = true,
+-- 				remap = false,
+-- 			},
+-- 			{ "<leader>gn", "<cmd>GpNextAgent<cr>", desc = "Next Agent", nowait = true, remap = false },
+-- 			{ "<leader>gr", "<cmd>GpRewrite<cr>", desc = "Inline Rewrite", nowait = true, remap = false },
+-- 			{ "<leader>gs", "<cmd>GpStop<cr>", desc = "GpStop", nowait = true, remap = false },
+-- 			{ "<leader>gt", "<cmd>GpChatToggle<cr>", desc = "Toggle Chat", nowait = true, remap = false },
+-- 			{ "<leader>gw", group = "Whisper", nowait = true, remap = false },
+-- 			{
+-- 				"<leader>gwa",
+-- 				"<cmd>GpWhisperAppend<cr>",
+-- 				desc = "Whisper Append (after)",
+-- 				nowait = true,
+-- 				remap = false,
+-- 			},
+-- 			{
+-- 				"<leader>gwb",
+-- 				"<cmd>GpWhisperPrepend<cr>",
+-- 				desc = "Whisper Prepend (before)",
+-- 				nowait = true,
+-- 				remap = false,
+-- 			},
+-- 			{ "<leader>gwe", "<cmd>GpWhisperEnew<cr>", desc = "Whisper Enew", nowait = true, remap = false },
+-- 			{ "<leader>gwn", "<cmd>GpWhisperNew<cr>", desc = "Whisper New", nowait = true, remap = false },
+-- 			{ "<leader>gwp", "<cmd>GpWhisperPopup<cr>", desc = "Whisper Popup", nowait = true, remap = false },
+-- 			{
+-- 				"<leader>gwr",
+-- 				"<cmd>GpWhisperRewrite<cr>",
+-- 				desc = "Whisper Inline Rewrite",
+-- 				nowait = true,
+-- 				remap = false,
+-- 			},
+-- 			{ "<leader>gwt", "<cmd>GpWhisperTabnew<cr>", desc = "Whisper Tabnew", nowait = true, remap = false },
+-- 			{ "<leader>gwv", "<cmd>GpWhisperVnew<cr>", desc = "Whisper Vnew", nowait = true, remap = false },
+-- 			{ "<leader>gww", "<cmd>GpWhisper<cr>", desc = "Whisper", nowait = true, remap = false },
+-- 			{ "<leader>gx", "<cmd>GpContext<cr>", desc = "Toggle GpContext", nowait = true, remap = false },
+-- 		})
+--
+-- 		-- INSERT mode mappings
+-- 		wk.add({
+-- 			{
+-- 				mode = { "i" },
+-- 				{ "<C-g><C-t>", "<cmd>GpChatNew tabnew<cr>", desc = "New Chat tabnew", nowait = true, remap = false },
+-- 				{ "<C-g><C-v>", "<cmd>GpChatNew vsplit<cr>", desc = "New Chat vsplit", nowait = true, remap = false },
+-- 				{ "<C-g><C-x>", "<cmd>GpChatNew split<cr>", desc = "New Chat split", nowait = true, remap = false },
+-- 				{ "<C-g>a", "<cmd>GpAppend<cr>", desc = "Append (after)", nowait = true, remap = false },
+-- 				{ "<C-g>b", "<cmd>GpPrepend<cr>", desc = "Prepend (before)", nowait = true, remap = false },
+-- 				{ "<C-g>c", "<cmd>GpChatNew<cr>", desc = "New Chat", nowait = true, remap = false },
+-- 				{ "<C-g>f", "<cmd>GpChatFinder<cr>", desc = "Chat Finder", nowait = true, remap = false },
+-- 				{ "<C-g>g", group = "generate into new ..", nowait = true, remap = false },
+-- 				{ "<C-g>ge", "<cmd>GpEnew<cr>", desc = "GpEnew", nowait = true, remap = false },
+-- 				{ "<C-g>gn", "<cmd>GpNew<cr>", desc = "GpNew", nowait = true, remap = false },
+-- 				{ "<C-g>gp", "<cmd>GpPopup<cr>", desc = "Popup", nowait = true, remap = false },
+-- 				{ "<C-g>gt", "<cmd>GpTabnew<cr>", desc = "GpTabnew", nowait = true, remap = false },
+-- 				{ "<C-g>gv", "<cmd>GpVnew<cr>", desc = "GpVnew", nowait = true, remap = false },
+-- 				{ "<C-g>h", group = "Custom [H]ooks", nowait = true, remap = false },
+-- 				{ "<C-g>he", "<cmd>GpExplain<cr>", desc = "Explain", nowait = true, remap = false },
+-- 				{ "<C-g>hr", "<cmd>GpCodeReview<cr>", desc = "Code Review", nowait = true, remap = false },
+-- 				{ "<C-g>hu", "<cmd>GpUnitTests<cr>", desc = "Unit Tests", nowait = true, remap = false },
+-- 				{
+-- 					"<C-g>hw",
+-- 					"<cmd>GpBufferChatNew<cr>",
+-- 					desc = "[W]hole Buffer Context",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{ "<C-g>n", "<cmd>GpNextAgent<cr>", desc = "Next Agent", nowait = true, remap = false },
+-- 				{ "<C-g>r", "<cmd>GpRewrite<cr>", desc = "Inline Rewrite", nowait = true, remap = false },
+-- 				{ "<C-g>s", "<cmd>GpStop<cr>", desc = "GpStop", nowait = true, remap = false },
+-- 				{ "<C-g>t", "<cmd>GpChatToggle<cr>", desc = "Toggle Chat", nowait = true, remap = false },
+-- 				{ "<C-g>w", group = "Whisper", nowait = true, remap = false },
+-- 				{
+-- 					"<C-g>wa",
+-- 					"<cmd>GpWhisperAppend<cr>",
+-- 					desc = "Whisper Append (after)",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{
+-- 					"<C-g>wb",
+-- 					"<cmd>GpWhisperPrepend<cr>",
+-- 					desc = "Whisper Prepend (before)",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{ "<C-g>we", "<cmd>GpWhisperEnew<cr>", desc = "Whisper Enew", nowait = true, remap = false },
+-- 				{ "<C-g>wn", "<cmd>GpWhisperNew<cr>", desc = "Whisper New", nowait = true, remap = false },
+-- 				{ "<C-g>wp", "<cmd>GpWhisperPopup<cr>", desc = "Whisper Popup", nowait = true, remap = false },
+-- 				{
+-- 					"<C-g>wr",
+-- 					"<cmd>GpWhisperRewrite<cr>",
+-- 					desc = "Whisper Inline Rewrite",
+-- 					nowait = true,
+-- 					remap = false,
+-- 				},
+-- 				{ "<C-g>wt", "<cmd>GpWhisperTabnew<cr>", desc = "Whisper Tabnew", nowait = true, remap = false },
+-- 				{ "<C-g>wv", "<cmd>GpWhisperVnew<cr>", desc = "Whisper Vnew", nowait = true, remap = false },
+-- 				{ "<C-g>ww", "<cmd>GpWhisper<cr>", desc = "Whisper", nowait = true, remap = false },
+-- 				{ "<C-g>x", "<cmd>GpContext<cr>", desc = "Toggle GpContext", nowait = true, remap = false },
+-- 			},
+-- 		}) ]]
+-- 	end,
+-- }

@@ -1,7 +1,8 @@
 return {
 	{
 		"folke/tokyonight.nvim",
-		priority = 1000,
+		lazy = true,
+		-- priority = 1000,
 		opts = {
 			on_colors = function(colors)
 				colors.bg = "#000000"
@@ -40,7 +41,21 @@ return {
 	{
 		"rebelot/kanagawa.nvim",
 		-- lazy = true,
+		priority = 1000,
 		opts = {
+			palette = {
+				sumiInk0 = "#000000",
+			},
+			transparent = true,
+			colors = {
+				theme = {
+					all = {
+						ui = {
+							bg_gutter = "none",
+						},
+					},
+				},
+			},
 			commentStyle = { italic = false },
 			statementStyle = { bold = false },
 			keywordStyle = { italic = false },
@@ -76,6 +91,7 @@ return {
 	},
 	{
 		"EdenEast/nightfox.nvim",
+		lazy = true,
 		opts = {
 			styles = { -- Style to be applied to different syntax groups
 				comments = "NONE", -- Value is any valid attr-list value `:help attr-list`

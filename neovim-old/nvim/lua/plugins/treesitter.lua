@@ -8,6 +8,7 @@ return { -- Highlight, edit, and navigate code
 		-- "nvim-treesitter/nvim-treesitter-textobjects",
 	},
 	opts = {
+		parser_install_dir = vim.fn.expand("$PREFIX/lib/nvim/parser"),
 		ensure_installed = {
 			"bash",
 			"c",
