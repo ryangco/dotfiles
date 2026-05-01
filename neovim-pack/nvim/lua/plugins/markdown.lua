@@ -16,6 +16,7 @@ local color_fg = "#1F2335"
 -- vim.cmd(string.format([[highlight Headline6Bg guifg=%s guibg=%s gui=bold]], color_fg, color6_bg))
 
 require("render-markdown").setup({
+	file_types = { "markdown", "codecompanion" },
 	restart_highlighter = true,
 	heading = {
 		sign = true,
@@ -49,6 +50,23 @@ require("render-markdown").setup({
 	html = {
 		comment = {
 			conceal = false,
+		},
+	},
+})
+
+require("markview").setup({
+	preview = {
+		filetypes = { "markdown", "codecompanion" },
+		ignore_buftypes = {},
+	},
+})
+
+require("img-clip").setup({
+	filetypes = {
+		codecompanion = {
+			prompt_for_file_name = false,
+			template = "[Image]($FILE_PATH)",
+			use_absolute_path = true,
 		},
 	},
 })

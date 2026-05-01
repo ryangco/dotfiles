@@ -4,6 +4,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/folke/which-key.nvim" },
 	{ src = "https://github.com/olimorris/codecompanion.nvim" },
+	{ src = "https://github.com/ravitemer/codecompanion-history.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/folke/noice.nvim" },
@@ -51,6 +52,8 @@ vim.pack.add({
 	{ src = "https://github.com/kevinhwang91/promise-async" },
 	{ src = "https://github.com/olrtg/nvim-emmet" },
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
+	{ src = "https://github.com/OXY2DEV/markview.nvim" },
+	{ src = "https://github.com/HakonHarnes/img-clip.nvim" },
 	{ src = "https://github.com/mbbill/undotree" },
 	{ src = "https://github.com/NvChad/nvim-colorizer.lua" },
 })
@@ -74,7 +77,7 @@ require("plugins.others")
 require("plugins.sessions")
 require("plugins.ufo")
 require("plugins.emmet")
-require("plugins.render-markdown")
+require("plugins.markdown")
 require("plugins.colorizer")
 
 -- Custom packer commands

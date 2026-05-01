@@ -33,7 +33,7 @@ mason_lspconfig.setup({
 mason_tool_installer.setup({
 	ensure_installed = {
 		"biome",
-		"prettier",
+		"prettierd",
 		"stylua",
 		"isort",
 		"pylint",

@@ -1,10 +1,11 @@
 local set = vim.keymap.set
 
-set("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart Neovim (:restart)", })
--- set("n", "<leader><leader>", function() vim.cmd("so") end)
+set("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart Neovim (:restart)" })
 set("x", "<leader>p", [["_dP]])
 set({ "n", "v" }, "<leader>d", [["_d]])
-set("n", "<leader>tu", function() vim.cmd.UndotreeToggle() end, { desc = "Toggle Undo Tree" })
+set("n", "<leader>tu", function()
+	vim.cmd.UndotreeToggle()
+end, { desc = "Toggle Undo Tree" })
 set("i", "jj", "<ESC>", { silent = true })
 set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 set("n", "<leader>x", "<cmd>bdelete<CR>", { desc = "Delete Buffer" })
@@ -15,21 +16,8 @@ set("v", "<S-up>", ":m '<-2<CR>gv=gv")
 set("v", "<S-down>", ":m '>+1<CR>gv=gv")
 -- set("n", "<C-d>", "<C-d>zz")
 -- set("n", "<C-u>", "<C-u>zz")
-set("n", "n", "nzz")
-set("n", "N", "Nzz")
-
--- osc52 working with stock wezterm
-vim.g.clipboard = {
-	name = "OSC 52",
-	copy = {
-		["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-		["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-	},
-	paste = {
-		["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-		["*"] = require("vim.ui.clipboard.osc52").paste("*"),
-	},
-}
+-- set("n", "n", "nzz")
+-- set("n", "N", "Nzz")
 
 -- Colorscheme
 set("n", "<leader>ol", function()
