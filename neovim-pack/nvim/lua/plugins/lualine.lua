@@ -138,3 +138,14 @@ require("lualine").setup({
 		},
 	},
 })
+if vim.env.TMUX then
+	vim.api.nvim_create_autocmd({ "FocusGained", "ColorScheme" }, {
+		callback = function()
+			vim.defer_fn(function()
+				vim.opt.laststatus = 0
+			end, 100)
+		end,
+	})
+
+	vim.o.laststatus = 0
+end

@@ -54,12 +54,12 @@ require("render-markdown").setup({
 	},
 })
 
-require("markview").setup({
+--[[ require("markview").setup({
 	preview = {
 		filetypes = { "markdown", "codecompanion" },
 		ignore_buftypes = {},
 	},
-})
+}) ]]
 
 require("img-clip").setup({
 	filetypes = {

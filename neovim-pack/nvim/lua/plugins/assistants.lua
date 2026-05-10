@@ -6,9 +6,12 @@ require("codecompanion").setup({
 		},
 	},
 	interactions = {
-		chat = { adapter = { name = "myAnthropic", model = "claude-sonnet-4-6" } },
-		inline = { adapter = { name = "myAnthropic", model = "claude-sonnet-4-6" } },
-		cmd = { adapter = { name = "myAnthropic", model = "claude-sonnet-4-6" } },
+		-- chat = { adapter = { name = "myAnthropic", model = "claude-sonnet-4-6" } },
+		-- inline = { adapter = { name = "myAnthropic", model = "claude-sonnet-4-6" } },
+		-- cmd = { adapter = { name = "myAnthropic", model = "claude-sonnet-4-6" } },
+		chat = { adapter = { name = "opencode", model = "opencode/kimi-k2.6" } },
+		inline = { adapter = { name = "opencode", model = "opencode/kimi-k2.6" } },
+		cmd = { adapter = { name = "opencode", model = "opencode/kimi-k2.6" } },
 		cli = {
 			agent = "claude_code",
 			agents = {
@@ -128,9 +131,10 @@ require("codecompanion").setup({
 	},
 	extensions = {
 		history = {
-			enabled = true, -- defaults to true
+			enabled = true,
 			opts = {
 				dir_to_save = vim.fn.stdpath("data") .. "/codecompanion_chats.json",
+				auto_generate_title = false,
 			},
 		},
 	},

@@ -52,10 +52,11 @@ vim.pack.add({
 	{ src = "https://github.com/kevinhwang91/promise-async" },
 	{ src = "https://github.com/olrtg/nvim-emmet" },
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
-	{ src = "https://github.com/OXY2DEV/markview.nvim" },
+	-- { src = "https://github.com/OXY2DEV/markview.nvim" },
 	{ src = "https://github.com/HakonHarnes/img-clip.nvim" },
 	{ src = "https://github.com/mbbill/undotree" },
 	{ src = "https://github.com/NvChad/nvim-colorizer.lua" },
+	{ src = "https://github.com/vimpostor/vim-tpipeline" },
 })
 
 require("plugins.colorscheme")

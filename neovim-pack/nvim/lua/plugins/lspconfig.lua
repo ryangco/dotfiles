@@ -108,6 +108,7 @@ vim.lsp.config("*", {
 vim.lsp.config("lua_ls", {
 	settings = {
 		Lua = {
+			codeLens = { enable = false },
 			diagnostics = {
 				globals = { "vim" },
 			},

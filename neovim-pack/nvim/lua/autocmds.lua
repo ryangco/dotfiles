@@ -98,3 +98,12 @@ autocmd("FileType", {
 		vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = event.buf })
 	end,
 })
+
+autocmd("WinResized", {
+	pattern = "*",
+	callback = function()
+		if vim.env.TMUX then
+			vim.opt.laststatus = 0
+		end
+	end,
+})
