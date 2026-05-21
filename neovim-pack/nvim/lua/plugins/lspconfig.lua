@@ -148,21 +148,6 @@ vim.lsp.config("emmet_language_server", {
 	},
 })
 
--- emmet_ls
-vim.lsp.config("emmet_ls", {
-	filetypes = {
-		"astro",
-		"html",
-		"typescriptreact",
-		"javascriptreact",
-		"css",
-		"sass",
-		"scss",
-		"less",
-		"svelte",
-	},
-})
-
 -- ts_ls (TypeScript/JavaScript)
 vim.lsp.config("ts_ls", {
 	workspace_required = false,
@@ -273,7 +258,6 @@ vim.lsp.enable({
 	"lua_ls",
 	"cssls",
 	"emmet_language_server",
-	"emmet_ls",
 	"ts_ls",
 	"gopls",
 	"astro",

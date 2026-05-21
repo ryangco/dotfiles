@@ -19,6 +19,8 @@ require("ex-colors").setup({
 	},
 })
 
+-- require("precognition").setup({})
+
 -- require("vim-sleuth").setup({})
 
 require("Comment").setup({

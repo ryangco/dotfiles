@@ -156,7 +156,8 @@ return {
 			-- 	vim.lsp.config([server],{ config })
 			-- end
 
-			require("mason-lsp").setup()
+			---@diagnostic disable-next-line: different-requires
+			require("neovim-pack.nvim.lua.plugins.mason").setup()
 			local ensure_installed = vim.tbl_keys(opts.servers or {})
 			vim.list_extend(ensure_installed, {
 				-- "stylua",

@@ -65,3 +65,23 @@ set("n", "<M-t>", "<c-w>+")
 set("n", "<M-s>", "<c-w>-")
 
 set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
+
+vim.keymap.set("n", "<leader>cx", function()
+	local buffers = vim.api.nvim_list_bufs()
+	local closed_count = 0
+
+	for _, bufnr in ipairs(buffers) do
+		if vim.api.nvim_buf_is_loaded(bufnr) then
+			local buftype = vim.bo[bufnr].buftype
+
+			-- Define which buffer types you want to target
+			if buftype == "quickfix" or buftype == "terminal" or buftype == "help" or buftype == "nofile" then
+				-- 'bd!' forces it to close, which is especially useful for active terminals
+				vim.api.nvim_buf_delete(bufnr, { force = true })
+				closed_count = closed_count + 1
+			end
+		end
+	end
+
+	print("Closed " .. closed_count .. " non-normal buffer(s)")
+end, { desc = "Close all non-normal buffers (quickfix, terminal, help, etc.)" })

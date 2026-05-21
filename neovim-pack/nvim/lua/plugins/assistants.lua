@@ -161,6 +161,6 @@ vim.keymap.set(
 )
 vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { nowait = true, desc = "Code Companion Add to Chat" })
 
-vim.keymap.set("n", "<leader>ah", function()
+vim.keymap.set("n", "<leader>sa", function()
 	require("codecompanion").extensions.history.browse_chats()
 end, { desc = "CodeCompanion History" })

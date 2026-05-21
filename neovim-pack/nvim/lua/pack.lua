@@ -1,3 +1,4 @@
+---@diagnostic disable: different-requires
 vim.pack.add({
 	{ src = "https://github.com/rebelot/kanagawa.nvim" },
 	{ src = "https://github.com/folke/snacks.nvim" },
@@ -40,6 +41,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/nvim-mini/mini.nvim" },
 	{ src = "https://github.com/aileot/ex-colors.nvim" },
+	-- { src = "https://github.com/tris203/precognition.nvim" },
 	{ src = "https://github.com/tpope/vim-sleuth" },
 	{ src = "https://github.com/numToStr/Comment.nvim" },
 	{ src = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring" },
@@ -54,9 +56,11 @@ vim.pack.add({
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
 	-- { src = "https://github.com/OXY2DEV/markview.nvim" },
 	{ src = "https://github.com/HakonHarnes/img-clip.nvim" },
-	{ src = "https://github.com/mbbill/undotree" },
+	-- { src = "https://github.com/mbbill/undotree" },
 	{ src = "https://github.com/NvChad/nvim-colorizer.lua" },
 	{ src = "https://github.com/vimpostor/vim-tpipeline" },
+	{ src = "https://github.com/TheNoeTrevino/haunt.nvim" },
+	{ src = "https://github.com/epwalsh/obsidian.nvim" },
 })
 
 require("plugins.colorscheme")
@@ -64,7 +68,7 @@ require("plugins.snacks")
 require("plugins.which-key")
 require("plugins.assistants")
 require("plugins.lspconfig")
-require("plugins.mason-lsp")
+require("plugins.mason")
 require("plugins.completion")
 require("plugins.autopairs")
 require("plugins.conform")
@@ -80,6 +84,8 @@ require("plugins.ufo")
 require("plugins.emmet")
 require("plugins.markdown")
 require("plugins.colorizer")
+require("plugins.haunt")
+require("plugins.obsidian")
 
 -- Custom packer commands
 -- NOTE: pack add

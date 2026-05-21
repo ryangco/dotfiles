@@ -107,3 +107,14 @@ autocmd("WinResized", {
 		end
 	end,
 })
+
+autocmd("VimLeavePre", {
+	callback = function()
+		local dir = vim.fn.expand("~/haunt-bookmarks")
+		vim.fn.system({
+			"bash",
+			"-c",
+			string.format("cd %s && git add -A && git diff --cached --quiet || git commit -m 'sync' && git push", dir),
+		})
+	end,
+})
