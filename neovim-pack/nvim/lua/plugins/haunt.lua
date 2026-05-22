@@ -29,7 +29,7 @@ haunt_sync_timer:start(10 * 60 * 1000, 10 * 60 * 1000, function()
 		"bash",
 		"-c",
 		string.format(
-			"cd %s && git add -A && git diff --cached --quiet || git commit -m 'sync' && git push",
+			"cd %s && git add -A && git diff --cached --quiet || (git commit -m 'sync' && git push)",
 			haunt_dir
 		),
 	}, { text = true }, function(result)
@@ -51,11 +51,16 @@ map("n", p .. "s", function()
 	vim.system({
 		"bash",
 		"-c",
-		string.format("cd %s && git add -A && git diff --cached --quiet || git commit -m 'sync' && git push", dir),
+		string.format("cd %s && git add -A && git diff --cached --quiet || (git commit -m 'sync' && git push)", dir),
 	}, { text = true }, function(result)
 		vim.schedule(function()
 			if result.code == 0 then
-				vim.notify("Haunt synced", vim.log.levels.INFO)
+				local has_changes = result.stdout and result.stdout ~= ""
+				if has_changes then
+					vim.notify("Haunt synced", vim.log.levels.INFO)
+				else
+					vim.notify("Haunt: nothing to sync", vim.log.levels.INFO)
+				end
 			else
 				vim.notify("Haunt sync failed:\n" .. result.stderr, vim.log.levels.ERROR)
 			end

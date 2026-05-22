@@ -111,10 +111,11 @@ autocmd("WinResized", {
 autocmd("VimLeavePre", {
 	callback = function()
 		local dir = vim.fn.expand("~/haunt-bookmarks")
-		vim.fn.system({
-			"bash",
-			"-c",
-			string.format("cd %s && git add -A && git diff --cached --quiet || git commit -m 'sync' && git push", dir),
-		})
+		vim.fn.system({ "bash", "-c", string.format("cd %s && git add -A", dir) })
+		local has_changes =
+			vim.fn.system({ "bash", "-c", string.format("cd %s && git diff --cached --quiet; echo $?", dir) })
+		if vim.trim(has_changes) == "1" then
+			vim.fn.system({ "bash", "-c", string.format("cd %s && git commit -m 'sync' && git push", dir) })
+		end
 	end,
 })
