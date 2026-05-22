@@ -1,9 +1,9 @@
 require("ex-colors").setup({
-	-- included_patterns = require("ex-colors.presets").recommended.included_patterns + {
-	--   "^Cmp%u", -- hrsh7th/nvim-cmp
-	--   '^GitSigns%u', -- lewis6991/gitsigns.nvim
-	--   '^RainbowDelimiter%u', -- HiPhish/rainbow-delimiters.nvim
-	-- },
+	included_patterns = require("ex-colors.presets").recommended.included_patterns + {
+		"^Cmp%u", -- hrsh7th/nvim-cmp
+		"^GitSigns%u", -- lewis6991/gitsigns.nvim
+		"^RainbowDelimiter%u", -- HiPhish/rainbow-delimiters.nvim
+	},
 	autocmd_patterns = {
 		CmdlineEnter = {
 			["*"] = {
@@ -11,15 +11,8 @@ require("ex-colors").setup({
 				"^health%u",
 			},
 		},
-		-- FileType = {
-		--   ['Telescope*'] = {
-		--     '^Telescope%u', -- nvim-telescope/telescope.nvim
-		--   },
-		-- },
 	},
 })
-
--- require("precognition").setup({})
 
 -- require("vim-sleuth").setup({})
 
@@ -45,49 +38,3 @@ require("screenkey").setup({
 vim.keymap.set("n", "<leader>uk", function()
 	vim.cmd("Screenkey toggle")
 end, { desc = "Toggle Screen[K]ey" })
-
-require("hardtime").setup({
-	restrict_mode = "hint",
-	restricted_keys = {
-		["<Up>"] = { "n", "x" },
-		["<Down>"] = { "n", "x" },
-		["<Left>"] = { "n", "x" },
-		["<Right>"] = { "n", "x" },
-		h = false,
-		j = false,
-		k = false,
-		l = false,
-	},
-	disabled_keys = {
-		["<Up>"] = false,
-		["<Down>"] = false,
-		["<Left>"] = false,
-		["<Right>"] = false,
-	},
-	-- hints = {
-	-- 	["<Up>"] = {
-	-- 		message = function()
-	-- 			return "Use [count]k or CTRL-U to scroll up."
-	-- 		end,
-	-- 		length = 2,
-	-- 	},
-	-- 	["<Down>"] = {
-	-- 		message = function()
-	-- 			return "Use [count]j or CTRL-D to scroll down."
-	-- 		end,
-	-- 		length = 2,
-	-- 	},
-	-- 	["<Left>"] = {
-	-- 		message = function()
-	-- 			return "Use b/B/ge/gE/F/T/0 to move left."
-	-- 		end,
-	-- 		length = 2,
-	-- 	},
-	-- 	["<Right>"] = {
-	-- 		message = function()
-	-- 			return "Use w/W/e/E/f/t/$ to move right."
-	-- 		end,
-	-- 		length = 2,
-	-- 	},
-	-- }
-})

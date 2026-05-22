@@ -48,7 +48,6 @@ vim.pack.add({
 	{ src = "https://github.com/folke/todo-comments.nvim" },
 	{ src = "https://github.com/windwp/nvim-ts-autotag" },
 	{ src = "https://github.com/NStefan002/screenkey.nvim" },
-	{ src = "https://github.com/m4xshen/hardtime.nvim" },
 	{ src = "https://github.com/rmagatti/auto-session" },
 	{ src = "https://github.com/kevinhwang91/nvim-ufo" },
 	{ src = "https://github.com/kevinhwang91/promise-async" },

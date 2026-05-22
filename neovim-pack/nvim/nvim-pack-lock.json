@@ -72,10 +72,6 @@
       "rev": "6d808f99bd63303646794406e270bd553ad7792e",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
-    "hardtime.nvim": {
-      "rev": "b4e431934af1fe224a3a801f632c008278cb7628",
-      "src": "https://github.com/m4xshen/hardtime.nvim"
-    },
     "haunt.nvim": {
       "rev": "815141d7367c9d895e902db27e2d25d4652ad0fc",
       "src": "https://github.com/TheNoeTrevino/haunt.nvim"

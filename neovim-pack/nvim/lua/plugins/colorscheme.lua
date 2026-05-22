@@ -28,4 +28,4 @@ require("kanagawa").setup({
 	end,
 })
 
-vim.cmd("colorscheme kanagawa")
+vim.cmd("colorscheme ex-kanagawa")
