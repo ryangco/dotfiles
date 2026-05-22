@@ -22,15 +22,15 @@ require("haunt").setup({
 	},
 })
 
+local haunt_dir = vim.fn.expand("~/haunt-bookmarks")
 local haunt_sync_timer = vim.uv.new_timer()
 haunt_sync_timer:start(10 * 60 * 1000, 10 * 60 * 1000, function()
-	local dir = vim.fn.expand("~/haunt-bookmarks")
 	vim.system({
 		"bash",
 		"-c",
 		string.format(
-			"cd %s && git pull --rebase && git add -A && git diff --cached --quiet || git commit -m 'sync' && git push",
-			dir
+			"cd %s && git add -A && git diff --cached --quiet || git commit -m 'sync' && git push",
+			haunt_dir
 		),
 	}, { text = true }, function(result)
 		vim.schedule(function()

@@ -58,7 +58,6 @@ require("snacks").setup({
 	statuscolumn = { enabled = true },
 	words = { enabled = true },
 	toggle = { enabled = true },
-	---@type table<string, snacks.win.Config>
 	styles = {
 		notification = {
 			relative = "editor",
