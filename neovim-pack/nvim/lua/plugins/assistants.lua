@@ -6,12 +6,15 @@ require("codecompanion").setup({
 		},
 	},
 	interactions = {
+		chat = { adapter = { name = "opencode_zen", model = "claude-sonnet-4-6" } },
+		inline = { adapter = { name = "opencode_zen", model = "claude-sonnet-4-6" } },
+		cmd = { adapter = { name = "opencode_zen", model = "claude-sonnet-4-6" } },
 		-- chat = { adapter = { name = "myAnthropic", model = "claude-sonnet-4-6" } },
 		-- inline = { adapter = { name = "myAnthropic", model = "claude-sonnet-4-6" } },
 		-- cmd = { adapter = { name = "myAnthropic", model = "claude-sonnet-4-6" } },
-		chat = { adapter = { name = "opencode", model = "opencode/kimi-k2.6" } },
-		inline = { adapter = { name = "opencode", model = "opencode/kimi-k2.6" } },
-		cmd = { adapter = { name = "opencode", model = "opencode/kimi-k2.6" } },
+		-- chat = { adapter = { name = "opencode", model = "opencode/kimi-k2.6" } },
+		-- inline = { adapter = { name = "opencode", model = "opencode/kimi-k2.6" } },
+		-- cmd = { adapter = { name = "opencode", model = "opencode/kimi-k2.6" } },
 		cli = {
 			agent = "claude_code",
 			agents = {
@@ -29,6 +32,21 @@ require("codecompanion").setup({
 	},
 	adapters = {
 		http = {
+			opencode_zen = function()
+				return require("codecompanion.adapters").extend("openai_compatible", {
+					env = {
+						api_key = "cmd:cat /home/myuser/secrets/ZEN_API_KEY.txt",
+						url = "https://opencode.ai/zen",
+						chat_url = "/v1/chat/completions",
+						models_endpoint = "/v1/models",
+					},
+					schema = {
+						model = {
+							default = "opencode/claude-sonnet-4-6",
+						},
+					},
+				})
+			end,
 			myAnthropic = function()
 				return require("codecompanion.adapters").extend("anthropic", {
 					env = {
@@ -134,7 +152,30 @@ require("codecompanion").setup({
 			enabled = true,
 			opts = {
 				dir_to_save = vim.fn.stdpath("data") .. "/codecompanion_chats.json",
-				auto_generate_title = false,
+				title_generation_opts = {
+					adapter = "opencode_zen",
+					model = "kimi-k2.6",
+					-- refresh_every_n_prompts = 5,
+					-- max_refreshes = 3,
+					format_title = function(original_title)
+						local git_root = vim.fn.systemlist("git rev-parse --show-toplevel 2>/dev/null")[1]
+						local prefix
+						if git_root and git_root ~= "" and not git_root:match("^fatal") then
+							prefix = vim.fn.fnamemodify(git_root, ":t")
+						else
+							prefix = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+						end
+						return "[" .. prefix .. "] " .. original_title
+					end,
+				},
+				continue_last_chat = false,
+				delete_on_clearing_chat = true,
+				summary = {
+					generation_opts = {
+						adapter = "opencode_zen",
+						model = "kimi-k2.6",
+					},
+				},
 			},
 		},
 	},
