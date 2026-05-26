@@ -1,10 +1,3 @@
--- vim.notify(
---      "=== ✅ LSP CONFIG LOADED SUCCESSFULLY ===",
---      vim.log.levels.INFO
--- ) vim.notify( "This is a very long error message\nLine 2\nLine 3\nLine 4\nLine 5\nLine 6\nLine 7\nLine 8\nLine 9\nLine 10\n...and it keeps going for a while to force the spill indicator",
---     vim.log.levels.ERROR
--- )
-
 -- NOTE: LSP Keybinds
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -89,14 +82,6 @@ end, { desc = "Toggle LSP virtual text" })
 -- NOTE: Setup servers
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local capabilities = cmp_nvim_lsp.default_capabilities()
-
--- Native LSP capabilities (if dropping cmp_nvim_lsp)
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
-
--- local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
--- if ok then
---     capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
--- end
 
 -- Global LSP settings (applied to all servers)
 vim.lsp.config("*", {
@@ -249,18 +234,4 @@ vim.lsp.config("astro", {
 			tsdk = vim.fn.stdpath("data") .. "/mason/packages/typescript-language-server/node_modules/typescript/lib",
 		},
 	},
-})
-
--- Instead of using mason enable all configured LSP via `automatic_enable=true`
--- Prefer more control, enable manual server call below via vim.lsp.enable("")
--- mason config: lua/plugins/mason.lua:22
-vim.lsp.enable({
-	"lua_ls",
-	"cssls",
-	"emmet_language_server",
-	"ts_ls",
-	"gopls",
-	"astro",
-	"tailwindcss",
-	"marksman",
 })

@@ -49,7 +49,6 @@ vim.pack.add({
 	{ src = "https://github.com/windwp/nvim-ts-autotag" },
 	{ src = "https://github.com/NStefan002/screenkey.nvim" },
 	{ src = "https://github.com/rmagatti/auto-session" },
-	{ src = "https://github.com/kevinhwang91/nvim-ufo" },
 	{ src = "https://github.com/kevinhwang91/promise-async" },
 	{ src = "https://github.com/olrtg/nvim-emmet" },
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
@@ -79,7 +78,6 @@ require("plugins.lualine")
 require("plugins.mini")
 require("plugins.others")
 require("plugins.sessions")
-require("plugins.ufo")
 require("plugins.emmet")
 require("plugins.markdown")
 require("plugins.colorizer")

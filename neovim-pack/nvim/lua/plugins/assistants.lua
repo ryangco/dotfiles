@@ -34,6 +34,7 @@ require("codecompanion").setup({
 		http = {
 			opencode_zen = function()
 				return require("codecompanion.adapters").extend("openai_compatible", {
+					name = "opencode_zen",
 					env = {
 						api_key = "cmd:cat /home/myuser/secrets/ZEN_API_KEY.txt",
 						url = "https://opencode.ai/zen",
@@ -49,6 +50,7 @@ require("codecompanion").setup({
 			end,
 			myAnthropic = function()
 				return require("codecompanion.adapters").extend("anthropic", {
+					name = "myAnthropic",
 					env = {
 						api_key = "cmd:cat /home/myuser/secrets/ANT_API_KEY.txt",
 					},
@@ -151,11 +153,14 @@ require("codecompanion").setup({
 		history = {
 			enabled = true,
 			opts = {
+				chat_filter = function(chat_data)
+					return chat_data.cwd == vim.fn.getcwd()
+				end,
 				dir_to_save = vim.fn.stdpath("data") .. "/codecompanion_chats.json",
 				title_generation_opts = {
 					adapter = "opencode_zen",
 					model = "kimi-k2.6",
-					-- refresh_every_n_prompts = 5,
+					refresh_every_n_prompts = 5,
 					-- max_refreshes = 3,
 					format_title = function(original_title)
 						local git_root = vim.fn.systemlist("git rev-parse --show-toplevel 2>/dev/null")[1]
@@ -168,7 +173,7 @@ require("codecompanion").setup({
 						return "[" .. prefix .. "] " .. original_title
 					end,
 				},
-				continue_last_chat = false,
+				continue_last_chat = true,
 				delete_on_clearing_chat = true,
 				summary = {
 					generation_opts = {
@@ -203,5 +208,8 @@ vim.keymap.set(
 vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { nowait = true, desc = "Code Companion Add to Chat" })
 
 vim.keymap.set("n", "<leader>sa", function()
+	require("codecompanion").extensions.history.browse_chats()
+end, { desc = "CodeCompanion History" })
+vim.keymap.set("n", "<leader>ah", function()
 	require("codecompanion").extensions.history.browse_chats()
 end, { desc = "CodeCompanion History" })

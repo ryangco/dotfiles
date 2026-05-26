@@ -108,14 +108,26 @@ autocmd("WinResized", {
 	end,
 })
 
-autocmd("VimLeavePre", {
-	callback = function()
-		local dir = vim.fn.expand("~/haunt-bookmarks")
-		vim.fn.system({ "bash", "-c", string.format("cd %s && git add -A", dir) })
-		local has_changes =
-			vim.fn.system({ "bash", "-c", string.format("cd %s && git diff --cached --quiet; echo $?", dir) })
-		if vim.trim(has_changes) == "1" then
-			vim.fn.system({ "bash", "-c", string.format("cd %s && git commit -m 'sync' && git push", dir) })
+autocmd("LspAttach", {
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client and client:supports_method("textDocument/foldingRange") then
+			local win = vim.api.nvim_get_current_win()
+			vim.wo[win][0].foldmethod = "expr"
+			vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
 		end
 	end,
 })
+vim.api.nvim_create_autocmd("LspDetach", { command = "setl foldexpr<" })
+
+-- autocmd("VimLeavePre", {
+-- 	callback = function()
+-- 		local dir = vim.fn.expand("~/haunt-bookmarks")
+-- 		vim.fn.system({ "bash", "-c", string.format("cd %s && git add -A", dir) })
+-- 		local has_changes =
+-- 			vim.fn.system({ "bash", "-c", string.format("cd %s && git diff --cached --quiet; echo $?", dir) })
+-- 		if vim.trim(has_changes) == "1" then
+-- 			vim.fn.system({ "bash", "-c", string.format("cd %s && git commit -m 'sync' && git push", dir) })
+-- 		end
+-- 	end,
+-- })

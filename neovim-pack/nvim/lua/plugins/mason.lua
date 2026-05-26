@@ -13,8 +13,7 @@ mason.setup({
 })
 
 mason_lspconfig.setup({
-	automatic_enable = false, -- set true to enable all LSP in `ensure_installed`
-	-- servers for mason to install
+	automatic_enable = true,
 	ensure_installed = {
 		"lua_ls",
 		"ts_ls",
