@@ -45,7 +45,7 @@ vim.api.nvim_set_hl(0, "@string.special.url", { cterm = { undercurl = true }, fg
 vim.api.nvim_set_hl(0, "@tag.attribute", { fg = 15123332 })
 vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = 10267594 })
 vim.api.nvim_set_hl(0, "@variable", { fg = 14473146 })
-vim.api.nvim_set_hl(0, "@variable.builtin", { cterm = { italic = true }, fg = 14968950, italic = true })
+vim.api.nvim_set_hl(0, "@variable.builtin", { fg = 14968950 })
 vim.api.nvim_set_hl(0, "@variable.member", { fg = 15123332 })
 vim.api.nvim_set_hl(0, "@variable.parameter", { fg = 12104912 })
 vim.api.nvim_set_hl(0, "Boolean", { fg = 16752742 })

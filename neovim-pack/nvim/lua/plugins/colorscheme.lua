@@ -24,6 +24,9 @@ require("kanagawa").setup({
 		return {
 			Boolean = { bold = false },
 			["@lsp.typemod.function.readonly"] = { bold = false },
+			["@variable.builtin"] = { italic = false },
+			["@lsp.mod.defaultLibrary"] = { italic = false },
+			["@lsp.typemod.variable.defaultLibrary"] = { italic = false },
 		}
 	end,
 })
