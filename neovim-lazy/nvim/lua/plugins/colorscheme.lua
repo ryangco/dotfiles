@@ -40,7 +40,7 @@ return {
 	},
 	{
 		"rebelot/kanagawa.nvim",
-		-- lazy = true,
+		lazy = true,
 		priority = 1000,
 		opts = {
 			palette = {
@@ -93,17 +93,20 @@ return {
 		"EdenEast/nightfox.nvim",
 		lazy = true,
 		opts = {
-			styles = { -- Style to be applied to different syntax groups
-				comments = "NONE", -- Value is any valid attr-list value `:help attr-list`
-				conditionals = "NONE",
-				constants = "NONE",
-				functions = "NONE",
-				keywords = "NONE",
-				numbers = "NONE",
-				operators = "NONE",
-				strings = "NONE",
-				types = "NONE",
-				variables = "NONE",
+			palettes = {
+				nightfox = { bg1 = "#000000" },
+				carbonfox = { bg1 = "#000000" },
+				duskfox = { bg1 = "#000000" },
+				nordfox = { bg1 = "#000000" },
+				terafox = { bg1 = "#000000" },
+			},
+			groups = {
+				all = {
+					["@markup.link.url"] = { style = "underline" },
+					["@markup.raw"] = { style = "NONE" },
+					["@string.special.url"] = { style = "underline" },
+					["@tag.attribute"] = { style = "NONE" },
+				},
 			},
 		},
 	},

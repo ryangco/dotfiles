@@ -2,7 +2,7 @@ require("obsidian").setup({
 	workspaces = {
 		{
 			name = "ObsidianVault",
-			path = "~/Obsidian",
+			path = "~/Obsidian/Vault/",
 		},
 	},
 	notes_subdir = "notes",

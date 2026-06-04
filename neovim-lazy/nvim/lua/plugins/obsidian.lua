@@ -1,7 +1,7 @@
 return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
 		opts = {},
@@ -61,11 +61,11 @@ return {
 			workspaces = {
 				{
 					name = "ObsidianVault",
-					path = "~/Obsidian",
+					path = "~/Obsidian/Vault/",
 				},
 			},
 			notes_subdir = "notes",
-			new_notes_location = "notes_subdir",
+			new_notes_location = "notes",
 			daily_notes = {
 				folder = "daily_notes",
 			},

@@ -72,9 +72,9 @@ return {
 					wo = { wrap = true },
 				},
 				notification_history = {
-					ft="markdown",
-					minimal=false,
-				}
+					ft = "markdown",
+					minimal = false,
+				},
 			},
 		},
 		keys = {
@@ -371,6 +371,55 @@ return {
 			},
 			-- search
 			{
+				"<leader>s ",
+				function()
+					Snacks.picker.smart()
+				end,
+				desc = " Smart",
+			},
+			{
+				"<leader>se",
+				function()
+					Snacks.explorer()
+				end,
+				desc = "Explorer",
+			},
+			{
+				"<leader>sz",
+				function()
+					Snacks.picker.buffers()
+				end,
+				desc = "Buffers",
+			},
+			{
+				"<leader>sf",
+				function()
+					Snacks.picker.files()
+				end,
+				desc = "Find files",
+			},
+			{
+				"<leader>sG",
+				function()
+					Snacks.picker.git_files()
+				end,
+				desc = "Git Files",
+			},
+			{
+				"<leader>sp",
+				function()
+					Snacks.picker.projects()
+				end,
+				desc = " Projects",
+			},
+			{
+				"<leader>sr",
+				function()
+					Snacks.picker.recent()
+				end,
+				desc = " Projects",
+			},
+			{
 				'<leader>s"',
 				function()
 					Snacks.picker.registers()
@@ -390,13 +439,6 @@ return {
 					Snacks.picker.autocmds()
 				end,
 				desc = "Autocmds",
-			},
-			{
-				"<leader>sb",
-				function()
-					Snacks.picker.lines()
-				end,
-				desc = "Buffer Lines",
 			},
 			{
 				"<leader>sc",
@@ -427,7 +469,7 @@ return {
 				desc = "Buffer Diagnostics",
 			},
 			{
-				"<leader>sh",
+				"<leader>s?",
 				function()
 					Snacks.picker.help()
 				end,
@@ -497,7 +539,7 @@ return {
 				desc = "Quickfix List",
 			},
 			{
-				"<leader>sR",
+				"<leader>s.",
 				function()
 					Snacks.picker.resume()
 				end,
@@ -589,12 +631,12 @@ return {
 					Snacks.toggle.diagnostics():map("<leader>ud")
 					Snacks.toggle.line_number():map("<leader>ul")
 					Snacks.toggle
-							.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
-							:map("<leader>uc")
+						.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+						:map("<leader>uc")
 					Snacks.toggle.treesitter():map("<leader>uT")
 					Snacks.toggle
-							.option("background", { off = "light", on = "dark", name = "Dark Background" })
-							:map("<leader>ub")
+						.option("background", { off = "light", on = "dark", name = "Dark Background" })
+						:map("<leader>ub")
 					Snacks.toggle.inlay_hints():map("<leader>uh")
 					Snacks.toggle.indent():map("<leader>ug")
 					Snacks.toggle.dim():map("<leader>uD")

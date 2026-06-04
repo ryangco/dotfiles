@@ -16,7 +16,7 @@ local color_fg = "#1F2335"
 -- vim.cmd(string.format([[highlight Headline6Bg guifg=%s guibg=%s gui=bold]], color_fg, color6_bg))
 
 require("render-markdown").setup({
-	file_types = { "markdown", "codecompanion" },
+	file_types = { "markdown", "codecompanion", "opencode_output" },
 	restart_highlighter = true,
 	heading = {
 		sign = true,
@@ -46,7 +46,7 @@ require("render-markdown").setup({
 		unchecked = { icon = " 󰄱 " },
 		checked = { icon = " 󰱒 " },
 	},
-	anti_conceal = { ignore = { head_background = true } },
+	anti_conceal = { enabled = false, ignore = { head_background = true } },
 	html = {
 		comment = {
 			conceal = false,

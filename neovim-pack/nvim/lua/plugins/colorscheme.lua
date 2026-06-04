@@ -31,4 +31,22 @@ require("kanagawa").setup({
 	end,
 })
 
-vim.cmd("colorscheme ex-kanagawa")
+require("nightfox").setup({
+	palettes = {
+		nightfox = { bg1 = "#000000" },
+		carbonfox = { bg1 = "#000000" },
+		duskfox = { bg1 = "#000000" },
+		nordfox = { bg1 = "#000000" },
+		terafox = { bg1 = "#000000" },
+	},
+	groups = {
+		all = {
+			["@markup.link.url"] = { style = "underline" },
+			["@markup.raw"] = { style = "NONE" },
+			["@string.special.url"] = { style = "underline" },
+			["@tag.attribute"] = { style = "NONE" },
+		},
+	},
+})
+
+vim.cmd("colorscheme ex-carbonfox")

@@ -33,7 +33,7 @@ require("snacks").setup({
 				hidden = true,
 			},
 			buffers = { hidden = true },
-			files = { hidden = true },
+			files = { hidden = true, ignored = true },
 			grep = { hidden = true },
 		},
 		layout = {

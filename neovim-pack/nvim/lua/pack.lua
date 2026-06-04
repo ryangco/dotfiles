@@ -6,6 +6,7 @@ vim.pack.add({
 	{ src = "https://github.com/folke/which-key.nvim" },
 	{ src = "https://github.com/olimorris/codecompanion.nvim" },
 	{ src = "https://github.com/ravitemer/codecompanion-history.nvim" },
+	{ src = "https://github.com/sudo-tee/opencode.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/folke/noice.nvim" },
@@ -59,6 +60,17 @@ vim.pack.add({
 	{ src = "https://github.com/vimpostor/vim-tpipeline" },
 	{ src = "https://github.com/TheNoeTrevino/haunt.nvim" },
 	{ src = "https://github.com/epwalsh/obsidian.nvim" },
+	{ src = "https://github.com/EdenEast/nightfox.nvim" },
+	{ src = "https://github.com/tpope/vim-dadbod" },
+	{ src = "https://github.com/kristijanhusak/vim-dadbod-ui" },
+	{ src = "https://github.com/kristijanhusak/vim-dadbod-completion" },
+	-- dap
+	{ src = "https://github.com/mfussenegger/nvim-dap" },
+	{ src = "https://github.com/rcarriga/nvim-dap-ui" },
+	{ src = "https://github.com/theHamsta/nvim-dap-virtual-text" },
+	{ src = "https://github.com/nvim-neotest/nvim-nio" },
+	{ src = "https://github.com/jay-babu/mason-nvim-dap.nvim" },
+	{ src = "https://github.com/leoluz/nvim-dap-go" },
 })
 
 require("plugins.colorscheme")
@@ -83,6 +95,8 @@ require("plugins.markdown")
 require("plugins.colorizer")
 require("plugins.haunt")
 require("plugins.obsidian")
+require("plugins.db")
+require("plugins.debug")
 
 -- Custom packer commands
 -- NOTE: pack add

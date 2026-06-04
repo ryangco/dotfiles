@@ -2,7 +2,6 @@ local set = vim.keymap.set
 
 set("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart Neovim (:restart)" })
 set("x", "<leader>p", [["_dP]])
-set({ "n", "v" }, "<leader>d", [["_d]])
 set("n", "<leader>tu", function()
 	vim.cmd.UndotreeToggle()
 end, { desc = "Toggle Undo Tree" })

@@ -2,75 +2,39 @@
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 	callback = function(ev)
-		local opts = { buffer = ev.buf, silent = true }
+		-- Helper function to quickly generate fresh options for each keymap
+		local function make_opts(desc)
+			return { buffer = ev.buf, silent = true, desc = desc }
+		end
 
-		opts.desc = "Show LSP references"
 		vim.keymap.set("n", "gR", function()
 			Snacks.picker.lsp_references()
-		end, opts)
+		end, make_opts("Show LSP references"))
 
-		opts.desc = "Go to declaration"
-		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, make_opts("Go to declaration"))
 
-		opts.desc = "Show LSP definitions"
 		vim.keymap.set("n", "gd", function()
 			Snacks.picker.lsp_definitions()
-		end, opts)
+		end, make_opts("Show LSP definitions"))
 
-		opts.desc = "Show LSP implementations"
 		vim.keymap.set("n", "gi", function()
 			Snacks.picker.lsp_implementations()
-		end, opts)
+		end, make_opts("Show LSP implementations"))
 
-		opts.desc = "Show LSP type definitions"
 		vim.keymap.set("n", "gt", function()
 			Snacks.picker.lsp_type_definitions()
-		end, opts)
+		end, make_opts("Show LSP type definitions"))
 
-		opts.desc = "Smart rename"
-		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, make_opts("Smart rename"))
 
-		opts.desc = "Show buffer diagnostics"
-		vim.keymap.set("n", "<leader>D", function()
-			Snacks.picker.diagnostics({ buf = ev.buf })
-		end, opts)
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, make_opts("Show documentation"))
 
-		opts.desc = "Show line diagnostics"
-		vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
-
-		opts.desc = "Show documentation for what is under cursor"
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-
-		opts.desc = "Restart LSP"
-		vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- fixed
+		vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", make_opts("Restart LSP"))
 
 		vim.keymap.set("i", "<C-h>", function()
 			vim.lsp.buf.signature_help()
-		end, opts)
+		end, make_opts("Signature help"))
 	end,
-})
-
--- NOTE: Diagnostic Setup
--- Define sign icons for each severity
-local signs = {
-	[vim.diagnostic.severity.ERROR] = " ",
-	[vim.diagnostic.severity.WARN] = " ",
-	[vim.diagnostic.severity.HINT] = "󰠠 ",
-	[vim.diagnostic.severity.INFO] = " ",
-}
-
--- update diagnostic config function
-vim.diagnostic.config({
-	signs = { text = signs },
-	virtual_text = true,
-	underline = true, -- Always on
-	update_in_insert = true,
-	float = {
-		focusable = false,
-		style = "minimal",
-		border = "rounded",
-		source = true,
-	},
 })
 
 -- <leader>lx toggle for virtual text (no hover changes)
@@ -109,6 +73,12 @@ vim.lsp.config("lua_ls", {
 		},
 	},
 })
+
+-- marksman (Markdown LSP)
+-- vim.lsp.config("marksman", {
+-- 	root_markers = { ".git", ".marksman.toml" },
+-- 	single_file_support = true,
+-- })
 
 -- emmet_language_server
 vim.lsp.config("emmet_language_server", {

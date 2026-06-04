@@ -24,14 +24,9 @@ autocmd("LspAttach", {
 		end
 
 		-- if client.supports_method("textDocument/codeLens", event.buf) then
-		if client.server_capabilities.documentHighlightProvider then
-			autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-				buffer = event.buf,
-				callback = function(ev)
-					vim.lsp.codelens.refresh({ bufnr = ev.buf })
-				end,
-			})
-		end
+		-- if client.server_capabilities.codeLensProvider then
+		-- 	vim.lsp.codelens.enable(true)
+		-- end
 
 		-- if client.supports_method("textDocument/documentHighlight") then
 		if client.server_capabilities.documentHighlightProvider then
@@ -90,7 +85,7 @@ autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = vim.api.nvim_create_augroup("UserHighlightYank", { clear = true }),
 	callback = function()
-		vim.highlight.on_yank({ timeout = 500 })
+		vim.hl.on_yank({ timeout = 500 })
 	end,
 })
 
@@ -103,3 +98,36 @@ autocmd("FileType", {
 		vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = event.buf })
 	end,
 })
+
+autocmd("WinResized", {
+	pattern = "*",
+	callback = function()
+		if vim.env.TMUX then
+			vim.opt.laststatus = 0
+		end
+	end,
+})
+
+autocmd("LspAttach", {
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client and client:supports_method("textDocument/foldingRange") then
+			local win = vim.api.nvim_get_current_win()
+			vim.wo[win][0].foldmethod = "expr"
+			vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+		end
+	end,
+})
+vim.api.nvim_create_autocmd("LspDetach", { command = "setl foldexpr<" })
+
+-- autocmd("VimLeavePre", {
+-- 	callback = function()
+-- 		local dir = vim.fn.expand("~/haunt-bookmarks")
+-- 		vim.fn.system({ "bash", "-c", string.format("cd %s && git add -A", dir) })
+-- 		local has_changes =
+-- 			vim.fn.system({ "bash", "-c", string.format("cd %s && git diff --cached --quiet; echo $?", dir) })
+-- 		if vim.trim(has_changes) == "1" then
+-- 			vim.fn.system({ "bash", "-c", string.format("cd %s && git commit -m 'sync' && git push", dir) })
+-- 		end
+-- 	end,
+-- })

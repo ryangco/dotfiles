@@ -6,15 +6,10 @@ require("codecompanion").setup({
 		},
 	},
 	interactions = {
-		chat = { adapter = { name = "opencode_zen", model = "claude-sonnet-4-6" } },
-		inline = { adapter = { name = "opencode_zen", model = "claude-sonnet-4-6" } },
-		cmd = { adapter = { name = "opencode_zen", model = "claude-sonnet-4-6" } },
-		-- chat = { adapter = { name = "myAnthropic", model = "claude-sonnet-4-6" } },
-		-- inline = { adapter = { name = "myAnthropic", model = "claude-sonnet-4-6" } },
-		-- cmd = { adapter = { name = "myAnthropic", model = "claude-sonnet-4-6" } },
-		-- chat = { adapter = { name = "opencode", model = "opencode/kimi-k2.6" } },
-		-- inline = { adapter = { name = "opencode", model = "opencode/kimi-k2.6" } },
-		-- cmd = { adapter = { name = "opencode", model = "opencode/kimi-k2.6" } },
+		-- chat = { adapter = { name = "opencode_zen", model = "kimi-k2.6" } },
+		inline = { adapter = { name = "opencode_zen", model = "kimi-k2.6" } },
+		cmd = { adapter = { name = "opencode_zen", model = "kimi-k2.6" } },
+		chat = { adapter = { name = "opencode_zen", model = "kimi-k2.6" } },
 		cli = {
 			agent = "claude_code",
 			agents = {
@@ -31,7 +26,14 @@ require("codecompanion").setup({
 		},
 	},
 	adapters = {
+		acp = {
+			opts = { show_presets = false },
+			opencode = function()
+				return require("codecompanion.adapters").extend("opencode", {})
+			end,
+		},
 		http = {
+			opts = { show_presets = false },
 			opencode_zen = function()
 				return require("codecompanion.adapters").extend("openai_compatible", {
 					name = "opencode_zen",
@@ -43,7 +45,7 @@ require("codecompanion").setup({
 					},
 					schema = {
 						model = {
-							default = "opencode/claude-sonnet-4-6",
+							default = "kimi-k2.6",
 						},
 					},
 				})
@@ -70,18 +72,6 @@ require("codecompanion").setup({
 				schema = {
 					model = {
 						default = "gemini-2.5-flash-preview-04-17",
-					},
-				},
-			})
-		end,
-		openai = function()
-			return require("codecompanion.adapters").extend("openai", {
-				env = {
-					api_key = "cmd:cat ~/secrets/OAI_API_KEY.txt",
-				},
-				schema = {
-					model = {
-						default = "gpt-5.1",
 					},
 				},
 			})
@@ -159,7 +149,7 @@ require("codecompanion").setup({
 				dir_to_save = vim.fn.stdpath("data") .. "/codecompanion_chats.json",
 				title_generation_opts = {
 					adapter = "opencode_zen",
-					model = "kimi-k2.6",
+					model = "big-pickle",
 					refresh_every_n_prompts = 5,
 					-- max_refreshes = 3,
 					format_title = function(original_title)
@@ -178,7 +168,7 @@ require("codecompanion").setup({
 				summary = {
 					generation_opts = {
 						adapter = "opencode_zen",
-						model = "kimi-k2.6",
+						model = "big-pickle",
 					},
 				},
 			},
@@ -213,3 +203,18 @@ end, { desc = "CodeCompanion History" })
 vim.keymap.set("n", "<leader>ah", function()
 	require("codecompanion").extensions.history.browse_chats()
 end, { desc = "CodeCompanion History" })
+
+require("opencode").setup({
+	default_mode = "plan",
+	keymap = {
+		input_window = {
+			["<C-a>"] = { "toggle_pane", mode = { "n", "i" }, defer_to_completion = true },
+			["<tab>"] = { "switch_mode", defer_to_completion = true },
+			["<M-m>"] = false,
+		},
+		output_window = {
+			["<C-a>"] = { "toggle_pane", mode = { "n", "i" } },
+			["<tab>"] = false,
+		},
+	},
+})

@@ -4,6 +4,13 @@ return {
 	cmd = { "ConformInfo" },
 	keys = {
 		{
+
+			"<leader>lf",
+			vim.lsp.buf.format,
+			mode = "",
+			desc = "Format buffer (LSP only)",
+		},
+		{
 			"<leader>F",
 			function()
 				require("conform").format({ async = true, lsp_format = "fallback" })

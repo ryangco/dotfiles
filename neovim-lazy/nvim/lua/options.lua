@@ -1,4 +1,4 @@
-vim.cmd("colorscheme kanagawa")
+vim.cmd("colorscheme ex-carbonfox")
 vim.o.expandtab = true
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
@@ -26,6 +26,15 @@ vim.o.cmdheight = 0
 vim.o.termguicolors = true
 vim.o.swapfile = false
 vim.o.winborder = "rounded"
+vim.o.foldcolumn = "1"
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldtext = ""
+vim.opt.foldcolumn = "0"
+vim.opt.fillchars:append({ fold = " " })
 
 ---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>
 local progress = vim.defaulttable()
@@ -70,3 +79,16 @@ vim.api.nvim_create_autocmd("LspProgress", {
 		})
 	end,
 })
+
+-- osc52 working with stock wezterm
+-- vim.g.clipboard = {
+-- 	name = "OSC 52",
+-- 	copy = {
+-- 		["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+-- 		["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+-- 	},
+-- 	paste = {
+-- 		["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+-- 		["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+-- 	},
+-- }
