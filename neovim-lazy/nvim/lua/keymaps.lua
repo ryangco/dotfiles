@@ -1,4 +1,4 @@
-local set = vim.keymap.set
+local set = Snacks.keymap.set
 
 set("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart Neovim (:restart)" })
 set("x", "<leader>p", [["_dP]])
@@ -13,10 +13,10 @@ set("v", "<leader>y", '"+y')
 set("n", "<leader>Y", '"+Y')
 set("v", "<S-up>", ":m '<-2<CR>gv=gv")
 set("v", "<S-down>", ":m '>+1<CR>gv=gv")
--- set("n", "<C-d>", "<C-d>zz")
--- set("n", "<C-u>", "<C-u>zz")
--- set("n", "n", "nzz")
--- set("n", "N", "Nzz")
+set("n", "<C-d>", "<C-d>zz")
+set("n", "<C-u>", "<C-u>zz")
+set("n", "n", "nzz")
+set("n", "N", "Nzz")
 
 -- Colorscheme
 set("n", "<leader>ol", function()

@@ -28,9 +28,11 @@ require("snacks").setup({
 		matcher = { frecency = true },
 		sources = {
 			explorer = {
+				replace_netrw = true,
 				auto_close = true,
 				layout = { layout = { position = "right" } },
 				hidden = true,
+				ignored = true,
 			},
 			buffers = { hidden = true },
 			files = { hidden = true, ignored = true },

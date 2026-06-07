@@ -1,4 +1,4 @@
-vim.cmd("colorscheme ex-carbonfox")
+vim.cmd("colorscheme ex-terafox")
 vim.o.expandtab = true
 vim.o.tabstop = 2
 vim.o.softtabstop = 2

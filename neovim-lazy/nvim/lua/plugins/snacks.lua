@@ -4,7 +4,6 @@ return {
 		priority = 1000,
 		lazy = false,
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		---@type snacks.Config
 		opts = {
 			-- scroll = { enabled = true },
 			image = { enabled = true },
@@ -35,9 +34,11 @@ return {
 				matcher = { frecency = true },
 				sources = {
 					explorer = {
+						replace_netrw = true,
 						auto_close = true,
-						layout = { layout = { position = "right" } },
+						layout = { preview = true, layout = { position = "right" } },
 						hidden = true,
+						ignored = true,
 					},
 					buffers = { hidden = true },
 					files = { hidden = true },
@@ -65,7 +66,6 @@ return {
 			statuscolumn = { enabled = true },
 			words = { enabled = true },
 			toggle = { enabled = true },
-			---@type table<string, snacks.win.Config>
 			styles = {
 				notification = {
 					relative = "editor",
@@ -74,6 +74,43 @@ return {
 				notification_history = {
 					ft = "markdown",
 					minimal = false,
+				},
+			},
+			terminal = {
+				bo = {
+					filetype = "snacks_terminal",
+				},
+				wo = {},
+				stack = true, -- when enabled, multiple split windows with the same position will be stacked together (useful for terminals)
+				keys = {
+					q = "hide",
+					gf = function(self)
+						local f = vim.fn.findfile(vim.fn.expand("<cfile>"), "**")
+						if f == "" then
+							Snacks.notify.warn("No file under cursor")
+						else
+							self:hide()
+							vim.schedule(function()
+								vim.cmd("e " .. f)
+							end)
+						end
+					end,
+					term_normal = {
+						"<esc>",
+						function(self)
+							self.esc_timer = self.esc_timer or (vim.uv or vim.loop).new_timer()
+							if self.esc_timer:is_active() then
+								self.esc_timer:stop()
+								vim.cmd("stopinsert")
+							else
+								self.esc_timer:start(200, 0, function() end)
+								return "<esc>"
+							end
+						end,
+						mode = "t",
+						expr = true,
+						desc = "Double escape to normal mode",
+					},
 				},
 			},
 		},

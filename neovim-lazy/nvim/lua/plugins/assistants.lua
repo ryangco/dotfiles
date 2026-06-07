@@ -123,18 +123,23 @@ return {
 	},
 	{
 		"sudo-tee/opencode.nvim",
-		lazy = true,
-		keys = {
+		event = "VeryLazy",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
 			{
-				"<leader>og",
-				function()
-					require("opencode").toggle()
-				end,
-				desc = "OpenCode Toggle",
+				"MeanderingProgrammer/render-markdown.nvim",
+				opts = {
+					anti_conceal = { enabled = false },
+					file_types = { "markdown", "opencode_output" },
+				},
+				ft = { "markdown", "Avante", "copilot-chat", "opencode_output" },
 			},
+			"hrsh7th/nvim-cmp",
+			"folke/snacks.nvim",
 		},
 		config = function()
 			require("opencode").setup({
+				preferred_picker = snacks,
 				default_mode = "plan",
 				keymap = {
 					input_window = {
@@ -149,18 +154,5 @@ return {
 				},
 			})
 		end,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			{
-				"MeanderingProgrammer/render-markdown.nvim",
-				opts = {
-					anti_conceal = { enabled = false },
-					file_types = { "markdown", "opencode_output" },
-				},
-				ft = { "markdown", "Avante", "copilot-chat", "opencode_output" },
-			},
-			"hrsh7th/nvim-cmp",
-			"folke/snacks.nvim",
-		},
 	},
 }
