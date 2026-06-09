@@ -77,6 +77,7 @@ return {
 				},
 			},
 			terminal = {
+				enabled = true,
 				bo = {
 					filetype = "snacks_terminal",
 				},

@@ -41,13 +41,19 @@ return {
 	{
 		"rebelot/kanagawa.nvim",
 		lazy = true,
-		priority = 1000,
+		-- priority = 1000,
 		opts = {
-			palette = {
-				sumiInk0 = "#000000",
-			},
 			transparent = true,
 			colors = {
+				palette = {
+					sumiInk0 = "#000000",
+					-- sumiInk1 = "#000000",
+					-- sumiInk2 = "#000000",
+					sumiInk3 = "#000000",
+					-- sumiInk4 = "#000000",
+					-- sumiInk5 = "#000000",
+					-- sumiInk6 = "#000000",
+				},
 				theme = {
 					all = {
 						ui = {
@@ -68,6 +74,9 @@ return {
 				return {
 					Boolean = { bold = false },
 					["@lsp.typemod.function.readonly"] = { bold = false },
+					["@variable.builtin"] = { italic = false },
+					["@lsp.mod.defaultLibrary"] = { italic = false },
+					["@lsp.typemod.variable.defaultLibrary"] = { italic = false },
 				}
 			end,
 		},

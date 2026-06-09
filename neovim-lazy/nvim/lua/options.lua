@@ -1,4 +1,4 @@
-vim.cmd("colorscheme ex-terafox")
+vim.cmd("colorscheme ex-kanagawa")
 vim.o.expandtab = true
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
@@ -19,7 +19,7 @@ vim.o.splitbelow = true
 vim.o.inccommand = "split"
 vim.o.cursorline = true
 vim.o.cursorlineopt = "number"
-vim.o.scrolloff = 10
+vim.o.scrolloff = 15
 vim.o.hlsearch = true
 vim.o.conceallevel = 1
 vim.o.cmdheight = 0
