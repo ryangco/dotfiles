@@ -20,14 +20,8 @@ return {
 			log_view = {
 				kind = "replace",
 			},
-			rebase_editor = {
-				kind = "auto",
-			},
 			reflog_view = {
 				kind = "replace",
-			},
-			merge_editor = {
-				kind = "auto",
 			},
 			stash = {
 				kind = "replace",
@@ -86,21 +80,29 @@ return {
 				end, { desc = "  Reset git hunk" })
 
 				-- Normal mode
-				map("n", "<leader>ga", gitsigns.stage_hunk, { desc = " Stage Hunk" })
-				map("n", "<leader>gx", gitsigns.reset_hunk, { desc = " Reset Hunk" })
-				map("n", "<leader>gA", gitsigns.stage_buffer, { desc = "  Stage Buffer" })
-				map("n", "<leader>gu", gitsigns.undo_stage_hunk, { desc = " Undo Stage Hunk" })
+				map("n", "<leader>ga", gitsigns.stage_hunk, { desc = "  Stage Hunk" })
+				map("n", "<leader>gx", gitsigns.reset_hunk, { desc = "  Reset Hunk" })
+				map("n", "<leader>gS", gitsigns.stage_buffer, { desc = "  Stage Buffer" })
 				map("n", "<leader>gX", gitsigns.reset_buffer, { desc = "  Reset Buffer" })
 				map("n", "<leader>gp", gitsigns.preview_hunk, { desc = "  Preview Hunk" })
-				map("n", "<leader>gi", gitsigns.blame_line, { desc = "  Blame Line" })
+				map("n", "<leader>gP", gitsigns.preview_hunk_inline, { desc = "  Preview Hunk Inline" })
+				map("n", "<leader>gi", function()
+					gitsigns.blame_line({ full = true })
+				end, { desc = "  Blame Line" })
 				map("n", "<leader>gd", gitsigns.diffthis, { desc = "  Diff Index" })
+				map("n", "<leader>gD", function()
+					gitsigns.diffthis("~")
+				end, { desc = "  Diff Index" })
+
 				map("n", "<leader>ge", function()
 					gitsigns.diffthis("@")
 				end, { desc = "  Diff Last Commit" })
 
 				-- Toggles
 				map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "[T]oggle git show [b]lame line" })
-				map("n", "<leader>tD", gitsigns.toggle_deleted, { desc = "[T]oggle git show [D]eleted" })
+				map("n", "<leader>tw", gitsigns.toggle_word_diff)
+				-- Text object
+				map({ "o", "x" }, "ih", gitsigns.select_hunk)
 			end,
 		},
 	},
