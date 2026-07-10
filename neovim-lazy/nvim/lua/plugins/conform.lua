@@ -5,13 +5,13 @@ return {
 	keys = {
 		{
 
-			"<leader>lf",
+			"<leader>F",
 			vim.lsp.buf.format,
 			mode = "",
 			desc = "Format buffer (LSP only)",
 		},
 		{
-			"<leader>F",
+			"<leader>f",
 			function()
 				require("conform").format({ async = true, lsp_format = "fallback" })
 			end,

@@ -3,6 +3,7 @@ return {
 	{
 		"olimorris/codecompanion.nvim",
 		dependencies = {
+			"ravitemer/codecompanion-history.nvim",
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 		},
@@ -118,6 +119,41 @@ return {
 					end,
 				},
 			},
+			extensions = {
+				history = {
+					enabled = true,
+					opts = {
+						chat_filter = function(chat_data)
+							return chat_data.cwd == vim.fn.getcwd()
+						end,
+						dir_to_save = vim.fn.stdpath("data") .. "/codecompanion_chats.json",
+						title_generation_opts = {
+							adapter = "opencode_zen",
+							model = "big-pickle",
+							refresh_every_n_prompts = 5,
+							-- max_refreshes = 3,
+							format_title = function(original_title)
+								local git_root = vim.fn.systemlist("git rev-parse --show-toplevel 2>/dev/null")[1]
+								local prefix
+								if git_root and git_root ~= "" and not git_root:match("^fatal") then
+									prefix = vim.fn.fnamemodify(git_root, ":t")
+								else
+									prefix = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+								end
+								return "[" .. prefix .. "] " .. original_title
+							end,
+						},
+						continue_last_chat = true,
+						delete_on_clearing_chat = true,
+						summary = {
+							generation_opts = {
+								adapter = "opencode_zen",
+								model = "big-pickle",
+							},
+						},
+					},
+				},
+			},
 		},
 		config = true,
 	},
@@ -150,6 +186,13 @@ return {
 					output_window = {
 						["<C-a>"] = { "toggle_pane", mode = { "n", "i" } },
 						["<tab>"] = false,
+					},
+				},
+				ui = {
+					input = {
+						text = {
+							wrap = true,
+						},
 					},
 				},
 			})

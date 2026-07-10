@@ -20,11 +20,11 @@ return {
 			{ name = "rgs_system_local", url = "postgresql://localhost:5432/rgs_system_local?sslmode=disable" },
 		}
 
-		vim.keymap.set("n", "<leader>db", "<cmd>DBUIToggle<cr>", { desc = "Toggle DBUI" })
-		vim.keymap.set("n", "<leader>dt", "<cmd>tab DBUI<cr>", { desc = "Open DBUI in a new tab" })
-		vim.keymap.set("n", "<leader>df", "<cmd>DBUIFindBuffer<cr>", { desc = "Find Buffer in DBUI" })
-		vim.keymap.set("n", "<leader>dr", "<cmd>DBUIRenameBuffer<cr>", { desc = "Rename Buffer in DBUI" })
-		vim.keymap.set("n", "<leader>dq", "<cmd>DBUILastQueryInfo<cr>", { desc = "Last Query Info" })
+		vim.keymap.set("n", "<leader>Du", "<cmd>DBUIToggle<cr>", { desc = "Toggle DBUI" })
+		vim.keymap.set("n", "<leader>Dt", "<cmd>tab DBUI<cr>", { desc = "Open DBUI in new tab" })
+		vim.keymap.set("n", "<leader>Df", "<cmd>DBUIFindBuffer<cr>", { desc = "Find Buffer in DBUI" })
+		vim.keymap.set("n", "<leader>Dr", "<cmd>DBUIRenameBuffer<cr>", { desc = "Rename Buffer in DBUI" })
+		vim.keymap.set("n", "<leader>Dq", "<cmd>DBUILastQueryInfo<cr>", { desc = "Last Query Info" })
 
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = { "sql", "mysql", "plsql" },

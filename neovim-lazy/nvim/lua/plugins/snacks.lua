@@ -188,7 +188,7 @@ return {
 				desc = "Lazygit Current File History",
 			},
 			{
-				"<leader>gg",
+				"<leader>gz",
 				function()
 					Snacks.lazygit()
 				end,
@@ -273,7 +273,7 @@ return {
 			{
 				"<leader><space>",
 				function()
-					Snacks.picker.smart()
+					Snacks.picker.smart({ hidden = true })
 				end,
 				desc = "Buffers",
 			},
@@ -297,49 +297,6 @@ return {
 					Snacks.explorer()
 				end,
 				desc = "File Explorer",
-			},
-			-- find
-			{
-				"<leader>fb",
-				function()
-					Snacks.picker.buffers()
-				end,
-				desc = "Buffers",
-			},
-			{
-				"<leader>fc",
-				function()
-					Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
-				end,
-				desc = "Find Config File",
-			},
-			{
-				"<leader>ff",
-				function()
-					Snacks.picker.files()
-				end,
-				desc = "Find Files",
-			},
-			{
-				"<leader>fg",
-				function()
-					Snacks.picker.git_files()
-				end,
-				desc = "Find Git Files",
-			},
-			{
-				"<leader>fp",
-				function()
-					Snacks.picker.projects()
-				end,
-				desc = "Projects",
-			},
-			{
-				"<leader>fr",
-				function()
-					Snacks.picker.recent()
-				end,
-				desc = "Recent",
 			},
 			-- git
 			{
@@ -411,7 +368,7 @@ return {
 			{
 				"<leader>s ",
 				function()
-					Snacks.picker.smart()
+					Snacks.picker.smart({ hidden = true })
 				end,
 				desc = " Smart",
 			},
@@ -455,7 +412,7 @@ return {
 				function()
 					Snacks.picker.recent()
 				end,
-				desc = " Projects",
+				desc = "Recent",
 			},
 			{
 				'<leader>s"',
@@ -596,6 +553,13 @@ return {
 					Snacks.picker.colorschemes()
 				end,
 				desc = "Colorschemes",
+			},
+			{
+				"<leader>sn",
+				function()
+					Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+				end,
+				desc = "Find Config File",
 			},
 			-- LSP
 			{
