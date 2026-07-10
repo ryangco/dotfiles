@@ -10,7 +10,31 @@ return {
 			"m00qek/baleia.nvim", -- optional
 		},
 		opts = {
-			kind = "split",
+			kind = "replace",
+			commit_editor = {
+				kind = "replace",
+			},
+			commit_select_view = {
+				kind = "replace",
+			},
+			log_view = {
+				kind = "replace",
+			},
+			rebase_editor = {
+				kind = "auto",
+			},
+			reflog_view = {
+				kind = "replace",
+			},
+			merge_editor = {
+				kind = "auto",
+			},
+			stash = {
+				kind = "replace",
+			},
+			refs_view = {
+				kind = "replace",
+			},
 			mappings = {
 				status = { ["<c-s>"] = "StageUnstaged", ["S"] = "StageAll" },
 			},
