@@ -3,32 +3,17 @@ return {
 		"NeogitOrg/neogit",
 		lazy = true,
 		dependencies = {
-			-- Only one of these is needed.
-			"sindrets/diffview.nvim", -- optional
-			-- "esmuellert/codediff.nvim", -- optional
-
-			"m00qek/baleia.nvim", -- optional
+			"sindrets/diffview.nvim",
+			"m00qek/baleia.nvim",
 		},
 		opts = {
 			kind = "replace",
-			commit_editor = {
-				kind = "replace",
-			},
-			commit_select_view = {
-				kind = "replace",
-			},
-			log_view = {
-				kind = "replace",
-			},
-			reflog_view = {
-				kind = "replace",
-			},
-			stash = {
-				kind = "replace",
-			},
-			refs_view = {
-				kind = "replace",
-			},
+			commit_editor = { kind = "replace" },
+			commit_select_view = { kind = "replace" },
+			log_view = { kind = "replace" },
+			reflog_view = { kind = "replace" },
+			stash = { kind = "replace" },
+			refs_view = { kind = "replace" },
 			mappings = {
 				status = { ["<c-s>"] = "StageUnstaged", ["S"] = "StageAll" },
 			},
