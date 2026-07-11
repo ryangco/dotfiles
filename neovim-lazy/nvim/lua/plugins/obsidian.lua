@@ -26,36 +26,36 @@ return {
 			end, { noremap = false, expr = true })
 		end,
 		keys = {
-			{ "<leader>on", "<cmd>ObsidianNew<cr>", desc = "New Obsidian note", mode = "n" },
-			{ "<leader>oo", "<cmd>ObsidianSearch<cr>", desc = "Search Obsidian notes", mode = "n" },
-			-- {
-			-- 	"<leader>oo",
-			-- 	function()
-			-- 		Snacks.picker.pick("grep", {
-			-- 			cwd = "~/Obsidian/",
-			-- 			actions = {
-			-- 				create_note = function(picker, item)
-			-- 					picker:close()
-			-- 					vim.cmd("ObsidianNew " .. picker.finder.filter.search)
-			-- 				end,
-			-- 			},
-			-- 			win = {
-			-- 				input = {
-			-- 					keys = {
-			-- 						["<c-x>"] = { "create_note", desc = "Create new note", mode = { "i", "n" } },
-			-- 					},
-			-- 				},
-			-- 			},
-			-- 		})
-			-- 	end,
-			-- 	desc = "Search Obsidian notes",
-			-- 	mode = "n",
-			-- },
-			{ "<leader>os", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick Switch", mode = "n" },
-			{ "<leader>ob", "<cmd>ObsidianBacklinks<cr>", desc = "Show location list of backlinks", mode = "n" },
-			{ "<leader>ot", "<cmd>ObsidianTemplate<cr>", desc = "Templates", mode = "n" },
-			{ "<leader>od", "<cmd>ObsidianToday<cr>", desc = "Todays daily note", mode = "n" },
-			{ "<leader>oy", "<cmd>ObsidianYesterday<cr>", desc = "Yesterdays daily note", mode = "n" },
+			{ "<leader>nn", "<cmd>ObsidianNew<cr>", desc = "New Obsidian note", mode = "n" },
+			-- { "<leader>oo", "<cmd>ObsidianSearch<cr>", desc = "Search Obsidian notes", mode = "n" },
+			{
+				"<leader>no",
+				function()
+					Snacks.picker.pick("grep", {
+						cwd = "~/Obsidian/",
+						actions = {
+							create_note = function(picker, item)
+								picker:close()
+								vim.cmd("ObsidianNew " .. picker.finder.filter.search)
+							end,
+						},
+						win = {
+							input = {
+								keys = {
+									["<c-x>"] = { "create_note", desc = "Create new note", mode = { "i", "n" } },
+								},
+							},
+						},
+					})
+				end,
+				desc = "Search Obsidian notes",
+				mode = "n",
+			},
+			{ "<leader>ns", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick Switch", mode = "n" },
+			{ "<leader>nb", "<cmd>ObsidianBacklinks<cr>", desc = "Show location list of backlinks", mode = "n" },
+			{ "<leader>nt", "<cmd>ObsidianTemplate<cr>", desc = "Templates", mode = "n" },
+			{ "<leader>nd", "<cmd>ObsidianToday<cr>", desc = "Todays daily note", mode = "n" },
+			{ "<leader>ny", "<cmd>ObsidianYesterday<cr>", desc = "Yesterdays daily note", mode = "n" },
 		},
 		opts = {
 			workspaces = {
@@ -121,7 +121,7 @@ return {
 					end,
 					opts = { buffer = true, expr = true },
 				},
-				["<leader>ont"] = {
+				["<leader>nat"] = {
 					action = function()
 						return require("obsidian").util.insert_template("Newsletter-Issue")
 					end,
